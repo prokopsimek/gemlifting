@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20160907133304) do
     t.integer  "gem_object_id"
     t.string   "authors"
     t.datetime "built_at"
-    t.datetime "created_at",                       null: false
     t.text     "description"
     t.integer  "downloads_count",  default: 0,     null: false
     t.string   "number"
@@ -52,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160907133304) do
     t.boolean  "prerelease",       default: false
     t.text     "licenses",         default: [],                 array: true
     t.string   "sha"
+    t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["gem_object_id"], name: "index_gem_versions_on_gem_object_id", using: :btree
   end

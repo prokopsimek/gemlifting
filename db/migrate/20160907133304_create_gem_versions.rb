@@ -4,7 +4,6 @@ class CreateGemVersions < ActiveRecord::Migration[5.0]
       t.references :gem_object, foreign_key: true
       t.string :authors
       t.datetime :built_at
-      t.datetime :created_at
       t.text :description
       t.integer :downloads_count, default: 0, null: false
       t.string :number
