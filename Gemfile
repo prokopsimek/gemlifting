@@ -90,3 +90,6 @@ gem 'sitemap_generator'
 
 # gem for meta tags
 gem 'meta-tags'
+
+# Rubygems API
+gem 'gems'
