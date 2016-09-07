@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -33,6 +34,28 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib
+  end
+
+  gem 'db-query-matchers'
+
+  # Rubocop power
+  gem 'rubocop'
+
+  gem 'foreman'
+
+  # debug requests on development
+  gem 'meta_request'
+
+  # This gem is for using ruby objects for test data instead of fixtures
+  # Read more: https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
+  gem 'factory_girl_rails'
+
+  # Fake data
+  gem 'ffaker'
+
 end
 
 group :development do
@@ -42,7 +65,28 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # 4-cores? 4-times the testing speed! See: https://github.com/grosser/parallel_tests
+  gem 'parallel_tests'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Load env variables from .env file
+gem 'dotenv-rails'
+
+# Hyper-concurent job worker
+gem 'sidekiq' # sidekiq must be before Airbrake in Gemfile!
+# Scheduler
+gem 'sidekiq-scheduler', '~> 2.0'
+
+# IRB nice printing
+gem 'awesome_print'
+
+# sitepam generator
+gem 'sitemap_generator'
+
+# gem for meta tags
+gem 'meta-tags'
