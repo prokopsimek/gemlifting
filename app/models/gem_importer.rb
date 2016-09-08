@@ -40,7 +40,7 @@ class GemImporter
       wiki_uri: gem_info['wiki_uri'],
       documentation_uri: gem_info['documentation_uri'],
       mailing_list_uri: gem_info['mailing_list_uri'],
-      source_code_uri: gem_info['source_code_uri'] || gem_info['homepage_uri'],
+      source_code_uri: gem_info['source_code_uri'],
       bug_tracker_uri: gem_info['bug_tracker_uri']
     )
 

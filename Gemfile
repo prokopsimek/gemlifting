@@ -93,3 +93,6 @@ gem 'meta-tags'
 
 # Rubygems API
 gem 'gems'
+
+# Github API
+gem 'octokit'
