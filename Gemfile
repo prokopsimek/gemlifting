@@ -81,6 +81,10 @@ gem 'dotenv-rails'
 gem 'sidekiq' # sidekiq must be before Airbrake in Gemfile!
 # Scheduler
 gem 'sidekiq-scheduler', '~> 2.0'
+# Sidekiq uniq job
+gem 'sidekiq-unique-jobs'
+
+gem 'sinatra', require: nil
 
 # IRB nice printing
 gem 'awesome_print'
@@ -96,3 +100,9 @@ gem 'gems'
 
 # Github API
 gem 'octokit'
+
+# TimeDifference
+gem 'time_difference'
+
+# User authentication
+gem 'devise'

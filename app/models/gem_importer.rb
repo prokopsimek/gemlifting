@@ -22,31 +22,36 @@ class GemImporter
   def import
     gem_info = Gems.info(name)
 
-    gem_obj = GemObject.find_or_initialize_by(name: gem_info['name'])
+    return nil if gem_info == "This rubygem could not be found."
 
-    gem_obj.assign_attributes(
-      name: gem_info['name'],
-      downloads: gem_info['downloads'],
-      version: gem_info['version'],
-      version_downloads: gem_info['version_downloads'],
-      authors: gem_info['authors'],
-      platform: gem_info['platform'],
-      info: gem_info['info'],
-      licenses: gem_info['licenses'],
-      sha: gem_info['sha'],
-      project_uri: gem_info['project_uri'],
-      gem_uri: gem_info['gem_uri'],
-      homepage_uri: gem_info['homepage_uri'],
-      wiki_uri: gem_info['wiki_uri'],
-      documentation_uri: gem_info['documentation_uri'],
-      mailing_list_uri: gem_info['mailing_list_uri'],
-      source_code_uri: gem_info['source_code_uri'],
-      bug_tracker_uri: gem_info['bug_tracker_uri']
-    )
+    ActiveRecord::Base.transaction do
+      gem_obj = GemObject.find_or_initialize_by(name: gem_info['name'])
 
-    gem_obj.versions = get_versions_for(gem_obj)
+      gem_obj.assign_attributes(
+        name: gem_info['name'],
+        downloads: gem_info['downloads'],
+        version: gem_info['version'],
+        version_downloads: gem_info['version_downloads'],
+        authors: gem_info['authors'],
+        platform: gem_info['platform'],
+        info: gem_info['info'],
+        licenses: gem_info['licenses'],
+        sha: gem_info['sha'],
+        project_uri: gem_info['project_uri'],
+        gem_uri: gem_info['gem_uri'],
+        homepage_uri: gem_info['homepage_uri'],
+        wiki_uri: gem_info['wiki_uri'],
+        documentation_uri: gem_info['documentation_uri'],
+        mailing_list_uri: gem_info['mailing_list_uri'],
+        source_code_uri: gem_info['source_code_uri'],
+        bug_tracker_uri: gem_info['bug_tracker_uri'],
+        rubygems_sync_at: DateTime.now
+      )
 
-    gem_obj.save!
+      gem_obj.versions = get_versions_for(gem_obj)
+
+      gem_obj.save!
+    end
   end
 
   private

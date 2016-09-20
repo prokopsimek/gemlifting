@@ -1,0 +1,15 @@
+GithubImporterJob:
+  every:
+    - "1h"
+    - :first_in: '10s'
+  description: "This job will update Github stats of gems."
+RubygemsImporterJob:
+  cron:
+    - "0 0 * * 0"
+    - :first_in: '5m'
+  description: "This job will update Rubygems stats of gems and import new gems to database."
+RubygemsSyncJob:
+  every:
+    - "15m"
+    - :first_in: '10s'
+  description: "This job adds latest new gems & updates latest updated on Rubygems."

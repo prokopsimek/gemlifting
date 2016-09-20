@@ -1,0 +1,2 @@
+# Github lib
+GITHUB_RATE_LIMIT = 5000
