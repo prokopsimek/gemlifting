@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   require 'sidekiq-scheduler/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'callbacks' }
-  # devise_scope :user do
-  #   get 'sign_in', :to => 'devise/sessions#new', :as => :new_user_session
-  #   get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-  # end
+  devise_for :users, skip: [:sessions], controllers: { omniauth_callbacks: 'callbacks' }
+  as :user do
+    get 'users/sign_in' => redirect('/'), as: :new_user_session
+    post 'users/sign_in' => 'devise/sessions#create', as: :user_session
+    delete 'users/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
+  end
 
   root 'application#home'
 end
