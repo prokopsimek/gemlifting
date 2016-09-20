@@ -106,3 +106,10 @@ gem 'time_difference'
 
 # User authentication
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-github'
+
+# template engine
+gem 'slim'
+
+gem 'gravatarify', '~> 3.0.0'
