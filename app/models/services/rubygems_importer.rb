@@ -1,25 +1,14 @@
-class GemImporter
+class Services::RubygemsImporter
 
-  attr_reader :name, :gem_object
-
-  def initialize(name)
-    @name = name.to_s
-    @gem_object = GemObject.find_by(name: @name)
-  end
-
-  def self.gems_list
-    @gem_list ||= GemRepo.new.names
-  end
-
-  def self.import_gems(limit = nil)
-    gems_list = self.gems_list
+  def import_gems(limit = nil)
+    gems_list = Services::Rubygems.new.names
     gems_list = gems_list.first(limit) if limit.present?
     gems_list.each do |gem_name|
-      new(gem_name).import
+      import(gem_name)
     end
   end
 
-  def import
+  def import(name)
     gem_info = Gems.info(name)
 
     return nil if gem_info == "This rubygem could not be found."

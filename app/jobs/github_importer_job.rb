@@ -8,7 +8,7 @@ class GithubImporterJob < SidekiqJobBase
 
     gem_objects_to_sync.find_each do |gem_object|
       begin
-        gem_object.import_github_stats # import stats via Github API
+        Services::GithubImporter.new.import_github_stats(gem_object) # import stats via Github API
       rescue Octokit::TooManyRequests => error
         Rails.logger.error error
         break # abort

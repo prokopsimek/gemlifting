@@ -1,4 +1,5 @@
-class GemRepo
+class Client::Rubygems
+
   attr_reader :names
 
   def initialize
@@ -32,4 +33,5 @@ class GemRepo
       @names << line.split().first
     end
   end
+
 end
