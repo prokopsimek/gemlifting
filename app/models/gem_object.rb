@@ -1,5 +1,7 @@
 class GemObject < ApplicationRecord
+  has_many :gem_categories, through: :gem_object_in_gem_categories, inverse_of: :gem_objects
   has_many :versions, class_name: GemVersion
+
   alias gem_versions versions
 
   def github_uri

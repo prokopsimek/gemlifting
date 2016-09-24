@@ -1,6 +1,7 @@
 class GemCategory < ApplicationRecord
+  has_many :gem_objects, through: :gem_object_in_gem_categories, inverse_of: :gem_categories
 
-  validates :parent_cannot_have_parent
+  validate :parent_cannot_have_parent
 
   def is_parental?
     parent.nil?
@@ -9,8 +10,8 @@ class GemCategory < ApplicationRecord
   private
 
   def parent_cannot_have_parent
-    unless parent.is_parental?
-      errors.add(:parent, 'has already parental category. Cannot have nested category in a subcategory.')
+    if parent.present? && !parent.is_parental?
+      errors.add(:parent, 'has already parental category. Cannot have nested category in a subcategory')
     end
   end
 
