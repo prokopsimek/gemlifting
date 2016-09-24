@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :gem_category do
-    name "MyString"
-    description "MyString"
-    parent_id 1
+    name "Category 1"
+    description "My category created via factory"
+    parent_id nil
   end
 end

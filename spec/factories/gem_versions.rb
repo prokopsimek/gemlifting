@@ -1,18 +1,18 @@
 FactoryGirl.define do
   factory :gem_version do
     gem_object nil
-    authors "MyString"
-    built_at "2016-09-07 15:33:04"
-    created_at "2016-09-07 15:33:04"
-    description "MyText"
-    downloads_count 1
-    number "MyString"
-    summary "MyString"
-    platfrom "MyString"
-    rubygems_version "MyString"
-    ruby_version "MyString"
+    authors "Firstname Lastname"
+    built_at DateTime.now
+    created_at DateTime.now
+    description "Any description of this version"
+    downloads_count 0
+    number "1.0.0"
+    summary "Any summary of this version"
+    platfrom nil
+    rubygems_version ">= 0"
+    ruby_version ">= 0"
     prerelease false
-    licenses ""
-    sha "MyString"
+    licenses ['MIT']
+    sha "1234567890"
   end
 end
