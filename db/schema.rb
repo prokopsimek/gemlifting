@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924195024) do
+ActiveRecord::Schema.define(version: 20160925145430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20160924195024) do
     t.integer  "parent_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "slug"
+    t.index ["slug"], name: "index_gem_categories_on_slug", unique: true, using: :btree
+  end
+
+  create_table "gem_object_in_gem_categories", force: :cascade do |t|
+    t.integer  "gem_object_id"
+    t.integer  "gem_category_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["gem_category_id"], name: "index_gem_object_in_gem_categories_on_gem_category_id", using: :btree
+    t.index ["gem_object_id", "gem_category_id"], name: "index_gem_in_gem_categories_on_gem_id_and_gem_category_id", unique: true, using: :btree
+    t.index ["gem_object_id"], name: "index_gem_object_in_gem_categories_on_gem_object_id", using: :btree
   end
 
   create_table "gem_objects", force: :cascade do |t|
@@ -49,6 +61,8 @@ ActiveRecord::Schema.define(version: 20160924195024) do
     t.integer  "open_issues_count"
     t.datetime "github_sync_at"
     t.datetime "rubygems_sync_at"
+    t.string   "slug"
+    t.index ["slug"], name: "index_gem_objects_on_slug", unique: true, using: :btree
   end
 
   create_table "gem_versions", force: :cascade do |t|
@@ -92,5 +106,7 @@ ActiveRecord::Schema.define(version: 20160924195024) do
   end
 
   add_foreign_key "gem_categories", "gem_categories", column: "parent_id"
+  add_foreign_key "gem_object_in_gem_categories", "gem_categories"
+  add_foreign_key "gem_object_in_gem_categories", "gem_objects"
   add_foreign_key "gem_versions", "gem_objects"
 end

@@ -7,6 +7,6 @@ class CreateGemObjectInGemCategories < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :gem_object_in_gem_categories, [:gem_object_id, :gem_category_id], uniq: true
+    add_index :gem_object_in_gem_categories, [:gem_object_id, :gem_category_id], unique: true, name: 'index_gem_in_gem_categories_on_gem_id_and_gem_category_id'
   end
 end

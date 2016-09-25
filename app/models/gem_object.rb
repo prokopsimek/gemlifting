@@ -1,4 +1,7 @@
 class GemObject < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :gem_object_in_gem_categories, inverse_of: :gem_object
   has_many :gem_categories, through: :gem_object_in_gem_categories, inverse_of: :gem_objects
   has_many :versions, class_name: GemVersion

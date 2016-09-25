@@ -113,3 +113,6 @@ gem 'omniauth-github'
 gem 'slim'
 
 gem 'gravatarify', '~> 3.0.0'
+
+# friendly urls
+gem 'friendly_id', '~> 5.1.0'
