@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     delete 'users/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
+  get '/robots.txt', to: 'application#robots'
   root 'application#home'
 end
