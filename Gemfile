@@ -122,3 +122,6 @@ gem 'scout_apm'
 
 # Newrelic
 gem 'newrelic_rpm'
+
+# Superadmin
+gem 'rails_admin', '~> 1.0'
