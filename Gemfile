@@ -116,3 +116,9 @@ gem 'gravatarify', '~> 3.0.0'
 
 # friendly urls
 gem 'friendly_id', '~> 5.1.0'
+
+# Error tracking
+gem 'scout_apm'
+
+# Newrelic
+gem 'newrelic_rpm'

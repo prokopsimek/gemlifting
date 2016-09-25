@@ -119,6 +119,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    newrelic_rpm (3.16.2.321)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -223,6 +224,7 @@ GEM
     sawyer (0.7.0)
       addressable (>= 2.3.5, < 2.5)
       faraday (~> 0.8, < 0.10)
+    scout_apm (2.1.11)
     sidekiq (4.2.1)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -301,6 +303,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   meta-tags
   meta_request
+  newrelic_rpm
   octokit
   omniauth
   omniauth-github
@@ -315,6 +318,7 @@ DEPENDENCIES
   rspec-support
   rubocop
   sass-rails (~> 5.0)
+  scout_apm
   sidekiq
   sidekiq-scheduler (~> 2.0)
   sidekiq-unique-jobs
