@@ -1,0 +1,7 @@
+- unless user_signed_in?
+  = link_to 'Github Login', user_github_omniauth_authorize_path
+  = link_to 'Logout', destroy_user_session_path, method: :delete
+- else
+  = gravatar_tag current_user.email, size: 30
+  = current_user.email
+  p = link_to 'Logout', destroy_user_session_path, method: :delete
