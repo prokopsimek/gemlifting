@@ -1,6 +1,6 @@
 class GemObject < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
 
   has_many :gem_object_in_gem_categories, inverse_of: :gem_object
   has_many :gem_categories, through: :gem_object_in_gem_categories, inverse_of: :gem_objects
@@ -29,6 +29,16 @@ class GemObject < ApplicationRecord
     end
 
     save!
+  end
+
+  private
+
+  def slug_candidates
+    parameterized_name = name.parameterize
+    [
+      parameterized_name,
+      [parameterized_name, "gem"]
+    ]
   end
 
 end

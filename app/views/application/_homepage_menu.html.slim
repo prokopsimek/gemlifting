@@ -1,7 +1,21 @@
-- unless user_signed_in?
-  = link_to 'Github Login', user_github_omniauth_authorize_path
-  = link_to 'Logout', destroy_user_session_path, method: :delete
-- else
-  = gravatar_tag current_user.email, size: 30
-  = current_user.email
-  p = link_to 'Logout', destroy_user_session_path, method: :delete
+nav.navbar.navbar-fixed-top.container
+  .navbar-header.navbar-left
+    =link_to root_path, class: 'navbar-brand'
+      = image_tag('http://placehold.it/120x35?text=logo')
+  .navbar-header.navbar-right
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        - unless user_signed_in?
+          li
+            = link_to user_github_omniauth_authorize_path
+              = fa_icon('github', { text: 'Github login' })
+        - else
+          li
+            .navbar-text
+              = gravatar_tag current_user.email, :navbar
+              = " #{current_user.email}"
+          li
+            = link_to destroy_user_session_path, method: :delete
+              = fa_icon('sign-out', { text: 'Sign out' })
+
+.container-content

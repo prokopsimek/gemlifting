@@ -2,7 +2,7 @@ module DevelopmentSecurity
   extend ActiveSupport::Concern
 
   included do
-    before_filter :development_security_check
+    before_action :development_security_check
   end
 
   def development_security_check

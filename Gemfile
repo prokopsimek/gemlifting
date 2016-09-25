@@ -129,3 +129,6 @@ gem 'rails_admin', '~> 1.0'
 # bootstrap
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+
+# autoprefixer
+gem 'autoprefixer-rails'

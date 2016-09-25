@@ -6,12 +6,16 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
 
-    <%= render 'shared/flash' %>
+    <div class="container">
+      <%= render 'shared/flash' %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
