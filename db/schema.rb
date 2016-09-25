@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160925161104) do
     t.integer  "parent_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "slug"
+    t.string   "slug",        null: false
     t.index ["slug"], name: "index_gem_categories_on_slug", unique: true, using: :btree
   end
 
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20160925161104) do
     t.integer  "open_issues_count"
     t.datetime "github_sync_at"
     t.datetime "rubygems_sync_at"
-    t.string   "slug"
+    t.string   "slug",                           null: false
     t.index ["slug"], name: "index_gem_objects_on_slug", unique: true, using: :btree
   end
 
