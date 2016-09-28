@@ -1,14 +1,32 @@
 class Client::Github
 
   def get_repo_info_hash(gh_uri)
-    client = Octokit::Client.new(access_token: ENV['GITHUB_API_TOKEN'])
-
     repo_user_and_name = get_gh_repo_string(gh_uri)
 
     client.repo repo_user_and_name
   end
 
+  def get_repo_readme(gh_uri)
+    repo_user_and_name = get_gh_repo_string(gh_uri)
+
+    readme_hash = client.readme repo_user_and_name
+
+    tmp_file = Tempfile.new
+    tmp_file.binmode
+
+    open(readme_hash[:download_url]) do |url_file|
+      tmp_file.write(url_file.read)
+    end
+
+    tmp_file.rewind
+    tmp_file.read
+  end
+
   private
+
+  def client
+    @client ||= Octokit::Client.new(access_token: ENV['GITHUB_API_TOKEN'])
+  end
 
   def get_gh_repo_string(gh_uri)
     # regex tester: https://regex101.com/r/pT7kE6/4

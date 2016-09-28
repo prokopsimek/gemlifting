@@ -1,0 +1,11 @@
+#gem-object-top.col-md-12
+  h1= @gem_object.name
+  p= @gem_object.description
+
+#gem-object-info.col-md-8
+  h1= @gem_object.description
+
+#gem-object-description.col-md-8
+  = @gem_object.html_readme
+
+= render 'sidenav'

@@ -132,3 +132,6 @@ gem 'twitter-bootstrap-rails'
 
 # autoprefixer
 gem 'autoprefixer-rails'
+
+# markdown parser
+gem 'redcarpet'

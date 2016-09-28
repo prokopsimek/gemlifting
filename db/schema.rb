@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928135828) do
+ActiveRecord::Schema.define(version: 20160928183318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,10 @@ ActiveRecord::Schema.define(version: 20160928135828) do
     t.datetime "github_sync_at"
     t.datetime "rubygems_sync_at"
     t.string   "slug",                           null: false
+    t.text     "description"
+    t.text     "readme"
+    t.string   "git_url"
+    t.string   "ssh_url"
     t.index ["slug"], name: "index_gem_objects_on_slug", unique: true, using: :btree
   end
 

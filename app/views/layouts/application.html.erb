@@ -12,9 +12,12 @@
 
   <body>
 
+    <%= render 'homepage_menu' %>
     <%= render 'shared/flash' %>
 
-    <%= yield %>
+    <div class="container container-content">
+      <%= yield %>
+    </div>
 
     <%= render 'shared/footer' %>
 

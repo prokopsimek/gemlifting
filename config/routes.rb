@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     delete 'users/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
+  resources :gem_categories, path: 'categories', only: [:index, :show]
+  resources :gem_objects, path: 'gems', only: [:show]
+
   get '/robots.txt', to: 'application#robots'
   root 'application#home'
+
+  # render 404 error if route does not exists
+  get '*a', to: 'errors#error_404'
 end

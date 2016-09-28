@@ -1,1 +1,3 @@
-li= category.name
+= category.name
+ul
+  = render partial: 'gem_categories/subcategory', collection: category.subcategories

@@ -1,0 +1,9 @@
+#category-top.col-md-12
+  h1= @category.name
+  p= @category.description
+
+- if @category.is_parental?
+  = render 'gem_categories/subcategories_list', subcategories: @category.subcategories
+- else
+  = render 'gem_categories/gem_objects_list', gem_objects: @category.gem_objects
+  = render 'sidenav'

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include DevelopmentSecurity
+  include DevelopmentSecurity, Rescuable
 
   protect_from_forgery with: :exception
 
