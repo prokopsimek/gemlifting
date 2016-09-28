@@ -7,6 +7,7 @@ class GemCategory < ApplicationRecord
   belongs_to :parent, inverse_of: :subcategories, class_name: GemCategory
   has_many :subcategories, inverse_of: :parent, class_name: GemCategory, foreign_key: :parent_id
 
+  validates :name, presence: true, uniqueness: true
   validate :parent_cannot_have_parent, :cannot_be_nested_in_self
 
   scope :parental, -> { where(parent_id: nil) }

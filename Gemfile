@@ -55,7 +55,6 @@ group :development, :test do
 
   # Fake data
   gem 'ffaker'
-
 end
 
 group :development do

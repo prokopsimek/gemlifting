@@ -1,21 +1,24 @@
-nav.navbar.navbar-fixed-top.container
-  .navbar-header.navbar-left
-    =link_to root_path, class: 'navbar-brand'
-      = image_tag('http://placehold.it/120x35?text=logo')
-  .navbar-header.navbar-right
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        - unless user_signed_in?
-          li
-            = link_to user_github_omniauth_authorize_path
-              = fa_icon('github', { text: 'Github login' })
-        - else
-          li
-            .navbar-text
-              = gravatar_tag current_user.email, :navbar
-              = " #{current_user.email}"
-          li
-            = link_to destroy_user_session_path, method: :delete
-              = fa_icon('sign-out', { text: 'Sign out' })
-
-.container-content
+.nav-container.navbar-fixed-top
+  nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header.navbar-left
+        =link_to root_path, class: 'navbar-brand'
+          = image_tag('http://alpha.yunoia.com/early-access-yunoia-logo.png')
+      .navbar-header.navbar-right
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            - unless user_signed_in?
+              li
+                = link_to user_github_omniauth_authorize_path
+                  = fa_icon('github', { text: 'Github login' })
+            - else
+              li.dropdown
+                .navbar-text.dropdown-toggle.user-gravatar-wrapper data-toggle="dropdown"
+                  = gravatar_tag current_user.email, :navbar
+                ul.dropdown-menu
+                  li.disabled.user-name-disabled-link
+                    a= current_user.nickname
+                  li.divider
+                  li
+                    = link_to destroy_user_session_path, method: :delete
+                      = fa_icon('sign-out', { text: 'Sign out' })
