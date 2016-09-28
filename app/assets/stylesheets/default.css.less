@@ -31,6 +31,21 @@
   max-width: 1230px;
   margin: 0px auto 15px;
   border-radius: 0;
+
+  .navbar-nav > li > a.auth-button {
+    border: 1px solid #909090;
+    color: #313131;
+    background-color: #fff;
+    border-radius: 5px;
+    .fa {
+      font-size: 1.2em;
+      vertical-align: sub;
+    }
+    &:hover {
+      background-color: #efefef;
+      transition: background-color 0.15s;
+    }
+  }
 }
 
 .nav-container {
@@ -47,13 +62,16 @@
 
   img {
     width: 100px;
-    margin-top: -8px;
+    transform: translateY(-25%);
   }
 }
 
-.navbar-text.user-gravatar-wrapper {
-  margin: 10px 10px;
-  cursor: pointer;
+.navbar-text {
+  margin: 7.5px 7.5px;
+  .user-gravatar-wrapper {
+    margin: 10px 10px;
+    cursor: pointer;
+  }
 }
 
 .user-name-disabled-link {

@@ -1,24 +1,21 @@
-.nav-container.navbar-fixed-top
-  nav.navbar.navbar-default
-    .container-fluid
-      .navbar-header.navbar-left
-        =link_to root_path, class: 'navbar-brand'
-          = image_tag('http://alpha.yunoia.com/early-access-yunoia-logo.png')
-      .navbar-header.navbar-right
-        .collapse.navbar-collapse
-          ul.nav.navbar-nav
-            - unless user_signed_in?
-              li
-                = link_to user_github_omniauth_authorize_path
-                  = fa_icon('github', { text: 'Github login' })
-            - else
-              li.dropdown
-                .navbar-text.dropdown-toggle.user-gravatar-wrapper data-toggle="dropdown"
-                  = gravatar_tag current_user.email, :navbar
-                ul.dropdown-menu
-                  li.disabled.user-name-disabled-link
-                    a= current_user.nickname
-                  li.divider
-                  li
-                    = link_to destroy_user_session_path, method: :delete
-                      = fa_icon('sign-out', { text: 'Sign out' })
+= nav_bar fixed: :top, responsive: true do
+
+  = menu_group pull: :left do
+    =link_to root_path, class: 'navbar-brand'
+      = image_tag('http://alpha.yunoia.com/early-access-yunoia-logo.png')
+  = menu_group pull: :right do
+    - unless user_signed_in?
+      li.navbar-text
+        = link_to user_github_omniauth_authorize_path, class: 'auth-button'
+          = fa_icon('github', { text: 'Github login' })
+    - else
+      li.dropdown
+        .navbar-text.dropdown-toggle.user-gravatar-wrapper data-toggle="dropdown"
+          = gravatar_tag current_user.email, :navbar
+        ul.dropdown-menu
+          li.disabled.user-name-disabled-link
+            a= current_user.nickname
+          li.divider
+          li
+            = link_to destroy_user_session_path, method: :delete
+              = fa_icon('sign-out', { text: 'Sign out' })
