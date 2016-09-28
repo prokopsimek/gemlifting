@@ -15,7 +15,6 @@ class Services::GithubImporter
     gh_uri = gem_object.github_uri
 
     get_info(gh_uri) do
-      Rails.logger.info gem_object.inspect
       readme_content = Client::Github.new.get_repo_readme(gh_uri)
       gem_object.update!(readme: readme_content)
       return self
