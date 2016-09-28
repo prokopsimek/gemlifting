@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gemlifting</title>
+    <%= render 'shared/seo_tags' %>
+    <%= render 'shared/google_analytics' %>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
+    <%= favicon_link_tag 'favicon.png', rel: 'apple-touch-icon', type: 'image/png' %>
+    <%= favicon_link_tag 'favicon.png', rel: 'apple-touch-icon-precomposed', type: 'image/png' %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
+
+    <script>
+      ga('send', 'pageview', window.location.pathname);
+    </script>
 
     <%= render 'homepage_menu' %>
     <%= render 'shared/flash' %>

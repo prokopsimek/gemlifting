@@ -7,14 +7,18 @@ class GemCategoriesController < ApplicationController
 
   # GET /categories/:id
   def show
-    find_category
+    category!
+
+    @page_title = category!.name
+    @page_description = category!.description
   end
 
   private
 
-  def find_category
-    @category = GemCategory.friendly.find(params[:id])
+  def category!
+    @category ||= GemCategory.friendly.find(params[:id])
     render_404 if @category.is_parental?
+    @category
   end
 
   
