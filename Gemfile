@@ -72,6 +72,8 @@ group :development do
   # 4-cores? 4-times the testing speed! See: https://github.com/grosser/parallel_tests
   gem 'parallel_tests'
 
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

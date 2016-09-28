@@ -20,6 +20,4 @@ class GemCategoriesController < ApplicationController
     render_404 if @category.is_parental?
     @category
   end
-
-  
 end

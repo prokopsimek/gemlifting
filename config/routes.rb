@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   root 'application#home'
 
   # render 404 error if route does not exists
-  get '*a', to: 'errors#error_404'
+  get '*a', to: 'errors#error_404' if Environment.current?('production')
 end
