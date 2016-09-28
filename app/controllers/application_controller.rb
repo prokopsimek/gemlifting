@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def home
-    @categories = GemCategory.parental.order(:name)
+    @categories = GemCategory.parental.eager_load(:subcategories).order(:name)
   end
 
   def robots

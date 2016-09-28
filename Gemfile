@@ -136,3 +136,5 @@ gem 'redcarpet'
 # sitemap
 gem 'sitemap_generator'
 gem 'fog-aws'
+
+gem 'rack-mini-profiler', require: false

@@ -16,7 +16,7 @@ class GemCategoriesController < ApplicationController
   private
 
   def category!
-    @category ||= GemCategory.friendly.find(params[:id])
+    @category ||= GemCategory.eager_load(:subcategories, :gem_objects).friendly.find(params[:id])
     render_404 if @category.is_parental?
     @category
   end
