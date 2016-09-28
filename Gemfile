@@ -55,6 +55,10 @@ group :development, :test do
 
   # Fake data
   gem 'ffaker'
+
+  # Load env variables from .env file
+  gem 'dotenv-rails'
+
 end
 
 group :development do
@@ -72,9 +76,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-# Load env variables from .env file
-gem 'dotenv-rails'
 
 # Hyper-concurent job worker
 gem 'sidekiq' # sidekiq must be before Airbrake in Gemfile!
@@ -126,7 +127,7 @@ gem 'newrelic_rpm'
 gem 'rails_admin', '~> 1.0'
 
 # bootstrap
-gem 'less-rails'
+gem 'less-rails', '~> 2.7.0'
 gem 'twitter-bootstrap-rails'
 
 # autoprefixer
