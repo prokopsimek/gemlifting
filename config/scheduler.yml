@@ -13,3 +13,8 @@ RubygemsSyncJob:
     - "15m"
     - :first_in: '10s'
   description: "This job adds latest new gems & updates latest updated on Rubygems."
+SitemapRefreshJob:
+  cron:
+    - "0 05 * * *"
+    - :first_in: '5s'
+  description: "Daily refreshing dynamic sitemap."

@@ -89,9 +89,6 @@ gem 'sinatra', require: nil
 # IRB nice printing
 gem 'awesome_print'
 
-# sitepam generator
-gem 'sitemap_generator'
-
 # gem for meta tags
 gem 'meta-tags'
 
@@ -135,3 +132,7 @@ gem 'autoprefixer-rails'
 
 # markdown parser
 gem 'redcarpet'
+
+# sitemap
+gem 'sitemap_generator'
+gem 'fog-aws'

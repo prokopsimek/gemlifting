@@ -43,6 +43,13 @@ class GemObject < ApplicationRecord
     markdown.render(readme).html_safe
   end
 
+  def lastmod_at
+    newest_date = updated_at
+    newest_date = github_sync_at if github_sync_at.present? && github_sync_at > newest_date
+    newest_date = rubygems_sync_at if rubygems_sync_at.present? && rubygems_sync_at > newest_date
+    newest_date
+  end
+
   private
 
   def slug_candidates
