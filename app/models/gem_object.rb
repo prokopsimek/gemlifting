@@ -28,6 +28,7 @@ class GemObject < ApplicationRecord
     watchers_count = repo_hash['watchers_count']
     forks_count = repo_hash['forks_count']
     open_issues_count = repo_hash['open_issues_count']
+    github_sync_at = DateTime.now
 
     if repo_hash['has_issues'].to_s == 'true' && bug_tracker_uri.blank?
       bug_tracker_uri = repo_hash['issues_url'].gsub!('{/number}', '')
