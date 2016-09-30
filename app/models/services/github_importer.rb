@@ -7,15 +7,15 @@ class Services::GithubImporter
       repo_hash = Client::Github.new.get_repo_info_hash(gh_uri)
 
       gem_object.update!(
-        description: repo_hash['description'],
-        git_url: repo_hash['git_url'],
-        ssh_url: repo_hash['ssh_url'],
-        stargazers_count: repo_hash['stargazers_count'],
-        watchers_count: repo_hash['watchers_count'],
-        forks_count: repo_hash['forks_count'],
-        open_issues_count: repo_hash['open_issues_count'],
+        description: repo_hash[:description],
+        git_url: repo_hash[:git_url],
+        ssh_url: repo_hash[:ssh_url],
+        stargazers_count: repo_hash[:stargazers_count],
+        watchers_count: repo_hash[:watchers_count],
+        forks_count: repo_hash[:forks_count],
+        open_issues_count: repo_hash[:open_issues_count],
         github_sync_at: DateTime.now,
-        bug_tracker_uri: (repo_hash['issues_url'].gsub!('{/number}', '') if repo_hash['has_issues'].to_s == 'true')
+        bug_tracker_uri: (repo_hash[:issues_url].gsub!('{/number}', '') if repo_hash[:has_issues].to_s == 'true')
       )
 
       return self
