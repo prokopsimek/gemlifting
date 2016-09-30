@@ -43,7 +43,9 @@ class Services::GithubImporter
       rescue Octokit::NotFound => e
         Rails.logger.error e
       end
+      ap "processed gh_uri"
     end
+    ap gh_uri
     false
   end
 
