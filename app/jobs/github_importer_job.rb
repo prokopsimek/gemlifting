@@ -4,7 +4,10 @@ class GithubImporterJob < SidekiqJobBase
     start_time = Time.now
 
     # select only s many objects as Github rate limit
-    gem_objects_to_sync = GemObject.order("github_sync_at ASC NULLS FIRST").limit(GITHUB_RATE_LIMIT + 100)
+    gem_objects_to_sync = GemObject
+                            .where("source_code_uri ILIKE ? OR homepage_uri ILIKE ?", "%github%", "%github%")
+                            .order("github_sync_at ASC NULLS FIRST")
+                            .limit(GITHUB_RATE_LIMIT + 100)
 
     gem_objects_to_sync.find_each do |gem_object|
       begin
