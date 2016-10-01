@@ -18,3 +18,8 @@ SitemapRefreshJob:
     - "0 05 * * *"
     - :first_in: '5s'
   description: "Daily refreshing dynamic sitemap."
+RecordMetricsJob:
+   cron:
+    - "0 02 * * *"
+    - :first_in: '5s'
+   description: "Records metrics and then runs the transportation."
