@@ -11,15 +11,7 @@ class Client::Github
 
     readme_hash = client.readme repo_user_and_name
 
-    tmp_file = Tempfile.new
-    tmp_file.binmode
-
-    open(readme_hash[:download_url]) do |url_file|
-      tmp_file.write(url_file.read)
-    end
-
-    tmp_file.rewind
-    tmp_file.read
+    readme_hash[:content]
   end
 
   private

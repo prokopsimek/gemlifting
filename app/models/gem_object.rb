@@ -20,11 +20,15 @@ class GemObject < ApplicationRecord
       .create!(gem_category: category)
   end
 
+  def read_readme
+    Base64.decode64(readme).force_encoding('UTF-8')
+  end
+
   def html_readme
     return nil if readme.nil?
 
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(link_attributes: { target: '_blank' }), autolink: true)
-    markdown.render(readme).html_safe
+    markdown.render(read_readme).html_safe
   end
 
   def lastmod_at
