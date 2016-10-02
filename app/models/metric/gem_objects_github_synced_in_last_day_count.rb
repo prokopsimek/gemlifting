@@ -6,7 +6,7 @@ class Metric::GemObjectsGithubSyncedInLastDayCount < Metric::Metric
   private
 
   def self.base_model
-    GemObject.where('gibhut_sync_at >= ?', DateTime.now - 1.day)
+    GemObject.where('github_sync_at >= ?', DateTime.now - 1.day)
   end
 
 end
