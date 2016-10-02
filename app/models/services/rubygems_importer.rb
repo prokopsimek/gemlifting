@@ -34,7 +34,7 @@ class Services::RubygemsImporter
         mailing_list_uri: gem_info['mailing_list_uri'],
         source_code_uri: gem_info['source_code_uri'],
         bug_tracker_uri: gem_info['bug_tracker_uri'],
-        rubygems_sync_at: DateTime.now
+        rubygems_sync_at: (gem_obj.new_record? ? nil : DateTime.now)
       )
 
       gem_obj.versions = get_versions_for(gem_obj)
