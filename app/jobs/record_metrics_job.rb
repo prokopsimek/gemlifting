@@ -1,9 +1,8 @@
-
-class RecordMetricsJob < BaseJob
+class RecordMetricsJob < SidekiqJobBase
   def perform
-    Rails.logger.info '---- Record Metrics Job STARTED'
+    Rails.logger.info '==== Record Metrics Job STARTED ===='
     Metric::Recorder.new.record_all
-    Rails.logger.info '---- Record Metrics Job FINISHED'
+    Rails.logger.info '==== Record Metrics Job FINISHED ===='
     TransportMetricsJob.perform_later
   end
 end
