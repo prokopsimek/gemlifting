@@ -1,4 +1,4 @@
-class TransportMetricsJob < SidekiqJobBase
+class TransportMetricsJob < ApplicationJob
   def perform
     Rails.logger.info '==== Transport Metrics Job STARTED ===='
     count = Metric::Transporter.new.transport_pending
