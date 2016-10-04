@@ -23,13 +23,4 @@ class Metric::Influx
     write(measurement_name, { value: value }, nil, timestamp)
   end
 
-  def write_test
-    data = {
-      values: { value: 42 },
-      tags: { foo: 'bar', bar: 'baz' },
-      timestamp: Time.now.to_i
-    }
-
-    @client.write_point('test_series', data)
-  end
 end
