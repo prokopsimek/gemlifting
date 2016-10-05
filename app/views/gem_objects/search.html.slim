@@ -1,0 +1,5 @@
+h1= "search for #{params[:query]}"
+
+ul
+- @gem_objects.find_each do |gem_object|
+  li= gem_object.name

@@ -13,6 +13,14 @@ class GemObjectsController < ApplicationController
     @page_description = gem_object!.description
   end
 
+  def search
+    query = params[:query]
+    @gem_objects = GemObject.search(query)
+
+    @page_title = "Searching '#{query}'"
+    @page_description = "Search results for text '#{query}'"
+  end
+
   private
 
   def gem_object!

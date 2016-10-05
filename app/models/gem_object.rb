@@ -1,4 +1,5 @@
 class GemObject < ApplicationRecord
+  include PgSearch
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -8,7 +9,16 @@ class GemObject < ApplicationRecord
 
   validates :slug, uniqueness: true
 
+  pg_search_scope :search_full_text, :against => {
+    name: 'A',
+    description: 'B'
+  }
+
   alias gem_versions versions
+
+  def self.search(query)
+    search_full_text(query)
+  end
 
   def github_uri
     gh_uri = source_code_uri || homepage_uri

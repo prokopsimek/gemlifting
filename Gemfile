@@ -143,3 +143,6 @@ gem 'rack-mini-profiler', require: false
 
 # communication with influxdb
 gem 'influxdb'
+
+# search
+gem 'pg_search'
