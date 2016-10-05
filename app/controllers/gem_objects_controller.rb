@@ -16,7 +16,11 @@ class GemObjectsController < ApplicationController
   def search
     query = params[:query]
 
-    redirect_to :back and return if query.blank?
+    begin
+      redirect_to :back and return if query.blank?
+    rescue ActionController::RedirectBackError
+      redirect_to root_path and return
+    end
 
     @gem_objects = GemObject.search(query)
 
