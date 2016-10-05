@@ -15,6 +15,9 @@ class GemObjectsController < ApplicationController
 
   def search
     query = params[:query]
+
+    redirect_to :back and return if query.blank?
+
     @gem_objects = GemObject.search(query)
 
     @page_title = "Search \"#{query}\""
