@@ -1,4 +1,6 @@
-h1= "search for #{params[:query]}"
+h1= "Search for \"#{params[:query]}\""
+
+= render 'search'
 
 ul
 - @gem_objects.find_each do |gem_object|
