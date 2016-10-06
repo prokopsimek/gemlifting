@@ -16,7 +16,7 @@ SitemapGenerator::Sitemap.sitemaps_host = SITEMAP_HOST
 # pick a namespace within your bucket to organize your maps
 SitemapGenerator::Sitemap.sitemaps_path = SITEMAP_PATH
 
-SitemapGenerator::Sitemap.create(compress: false) do
+SitemapGenerator::Sitemap.create(compress: true) do
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.
