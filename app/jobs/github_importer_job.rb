@@ -9,7 +9,7 @@ class GithubImporterJob < SidekiqJobBase
                             .order("github_sync_at ASC NULLS FIRST")
                             .limit(GITHUB_RATE_LIMIT + 100)
 
-    gem_objects_to_sync.find_each do |gem_object|
+    gem_objects_to_sync.each do |gem_object|
       begin
         Rails.logger.info gem_object.inspect
         Services::GithubImporter.new.import_github_stats(gem_object) # import stats via Github API

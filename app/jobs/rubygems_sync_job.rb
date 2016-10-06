@@ -9,7 +9,7 @@ class RubygemsSyncJob < SidekiqJobBase
     end
 
     # Returns the 50 most recently updated gems
-    Client::Rubygems.names_of_just_updated do |updated_gem_name|
+    Client::Rubygems.names_of_just_updated.each do |updated_gem_name|
       Services::RubygemsImporter.new.import(updated_gem_name)
     end
 

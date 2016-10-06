@@ -17,7 +17,7 @@ class RubygemsImporterJob < SidekiqJobBase
     end
 
     # process gems ordered by oldest rubygems sync
-    GemObject.order(rubygems_sync_at: :asc).find_each do |gem_object|
+    GemObject.order(rubygems_sync_at: :asc).each do |gem_object|
       Services::RubygemsImporter.new.import(gem_object.name)
     end
 
