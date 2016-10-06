@@ -3,5 +3,5 @@ h1= "Search for \"#{params[:query]}\""
 = render 'search'
 
 ul
-- @gem_objects.find_each do |gem_object|
+- @gem_objects.each do |gem_object|
   li= link_to gem_object.name, gem_object_path(gem_object)
