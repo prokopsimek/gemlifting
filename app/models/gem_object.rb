@@ -8,6 +8,7 @@ class GemObject < ApplicationRecord
   has_many :versions, class_name: GemVersion
 
   validates :slug, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
   pg_search_scope :search_full_text, against: {
     name: 'A',
@@ -51,7 +52,7 @@ class GemObject < ApplicationRecord
   private
 
   def slug_candidates
-    parameterized_name = name.parameterize.dasherize
+    parameterized_name = name.present? ? name.parameterize.dasherize : name
     [
       parameterized_name,
       [parameterized_name, "gem"]
