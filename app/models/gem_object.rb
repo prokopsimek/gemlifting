@@ -9,7 +9,7 @@ class GemObject < ApplicationRecord
 
   validates :slug, uniqueness: true
 
-  pg_search_scope :search_full_text, :against => {
+  pg_search_scope :search_full_text, against: {
     name: 'A',
     description: 'B'
   }

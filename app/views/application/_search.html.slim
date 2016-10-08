@@ -1,5 +1,5 @@
 #search
   = form_tag search_path, method: :get
-    = text_field_tag 'query', (params['query'].present? ? params['query'] : nil), class: 'cmd-input', placeholder: 'Search'
+    = text_field_tag :q, (params[:q].present? ? params[:q] : nil), class: 'cmd-input', placeholder: 'Search'
     = button_tag type: 'submit', class: ''
       = fa_icon('search')

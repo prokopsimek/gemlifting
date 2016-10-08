@@ -3,8 +3,25 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  # GET /
   def home
     @categories = GemCategory.parental.eager_load(:subcategories).order(:name)
+  end
+
+  # GET /search?q=:query
+  def search
+    query = params[:q]
+
+    begin
+      redirect_to :back and return if query.blank?
+    rescue ActionController::RedirectBackError
+      redirect_to root_path and return
+    end
+
+    @gem_objects = GemObject.search(query)
+
+    @page_title = "Search \"#{query}\""
+    @page_description = "Search results for text \"#{query}\""
   end
 
   def robots

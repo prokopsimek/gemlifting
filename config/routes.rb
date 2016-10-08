@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/superadmin', as: 'rails_admin'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   require 'sidekiq/web'
   require 'sidekiq-scheduler/web'
   mount Sidekiq::Web => '/sidekiq'
+  mount RailsAdmin::Engine => '/superadmin', as: 'rails_admin'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :users, skip: [:sessions], controllers: { omniauth_callbacks: 'callbacks' }
   as :user do
@@ -16,9 +15,9 @@ Rails.application.routes.draw do
   resources :gem_categories, path: 'categories', only: [:index, :show]
   resources :gem_objects, path: 'gems', only: [:show]
 
-  get 'search' => 'gem_objects#search'
-  get '/robots.txt', to: 'application#robots'
-  get '/sitemap.xml', to: redirect(SITEMAP_URL)
+  get 'search' => 'application#search'
+  get 'robots.txt', to: 'application#robots'
+  get 'sitemap.xml', to: redirect(SITEMAP_URL)
 
   root 'application#home'
 

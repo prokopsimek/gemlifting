@@ -13,21 +13,6 @@ class GemObjectsController < ApplicationController
     @page_description = gem_object!.description
   end
 
-  def search
-    query = params[:query]
-
-    begin
-      redirect_to :back and return if query.blank?
-    rescue ActionController::RedirectBackError
-      redirect_to root_path and return
-    end
-
-    @gem_objects = GemObject.search(query)
-
-    @page_title = "Search \"#{query}\""
-    @page_description = "Search results for text \"#{query}\""
-  end
-
   private
 
   def gem_object!
