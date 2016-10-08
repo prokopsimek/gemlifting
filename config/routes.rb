@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :gem_categories, path: 'categories', only: [:index, :show]
   resources :gem_objects, path: 'gems', only: [:show]
 
-  get 'search' => 'application#search'
+  get 'search' => 'application#search', as: :search
   get 'robots.txt', to: 'application#robots'
   get 'sitemap.xml', to: redirect(SITEMAP_URL)
 

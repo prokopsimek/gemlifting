@@ -42,7 +42,7 @@ module MetaTagsHelper
       'url': 'https://www.gemlifting.com',
       'potentialAction': {
         '@type': 'SearchAction',
-        'target': 'https://www.gemlifting.com/?query={search_term_string}',
+        'target': 'https://www.gemlifting.com/search?q={search_term_string}',
         'query-input': 'required name=search_term_string'
       }
     }
