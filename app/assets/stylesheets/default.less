@@ -1,3 +1,9 @@
+@import "bootstrap_and_overrides";
+
+.turbolinks-progress-bar {
+  background-color: @brand-primary;
+}
+
 .default-margin {
   margin-top: 20px;
 }
@@ -29,6 +35,10 @@
   position: relative;
 }
 
+.content-left {
+  padding: 0;
+}
+
 .navbar {
   border: none;
   background-color: lightcoral;
@@ -38,17 +48,10 @@
   border-radius: 0;
 
   .navbar-nav > li > a.auth-button {
-    border: 1px solid #909090;
-    color: #313131;
-    background-color: #fff;
-    border-radius: 5px;
+    .btn-primary;
     .fa {
       font-size: 1.2em;
       vertical-align: sub;
-    }
-    &:hover {
-      background-color: #efefef;
-      transition: background-color 0.15s;
     }
   }
 }
@@ -92,13 +95,24 @@
 #sidenav {
   background-color: lightblue;
 
-  padding: 10px 10px;
+  padding: 0px 0px;
 }
 
 #search {
-  background-color: lightblue;
-  padding: 10px 10px;
   margin: 20px 0px;
+
+  form {
+    div {
+      padding: 0 0;
+    }
+    button {
+      width: 95%;
+    }
+    input, button {
+      height: 60px;
+      font-size: 1.4em;
+    }
+  }
 }
 
 #categories-list {
@@ -131,11 +145,18 @@
 }
 #gem-object-info {
   background-color: lightgoldenrodyellow;
-
+  padding: 10px 20px;
   .default-margin;
 }
 #gem-object-description {
   background-color: lightcyan;
+  padding: 10px 20px;
+  .default-margin;
+}
 
+.sidenav-container {
+  background-color: lightcoral;
+
+  padding: 20px 20px;
   .default-margin;
 }

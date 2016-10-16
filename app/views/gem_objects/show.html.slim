@@ -2,10 +2,11 @@
   h1= @gem_object.name
   p= @gem_object.description
 
-#gem-object-info.col-md-8
-  h1= @gem_object.description
+.col-md-8.content-left
+  #gem-object-info
+    h1= @gem_object.description
 
-#gem-object-description.col-md-8
-  = @gem_object.html_readme
+  #gem-object-description
+    = @gem_object.html_readme
 
-= render 'sidenav'
+= render 'gem_objects/sidenav'

@@ -11,9 +11,14 @@ class GemCategory < ApplicationRecord
   validate :parent_cannot_have_parent, :cannot_be_nested_in_self
 
   scope :parental, -> { where(parent_id: nil) }
+  scope :children, -> { where.not(parent_id: nil) }
 
   def is_parental?
     parent.nil?
+  end
+
+  def top_downloaded_gems
+    gem_objects.order(downloads: :desc).limit(10)
   end
 
   private

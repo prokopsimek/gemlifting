@@ -1,0 +1,16 @@
+.col-md-4
+  #sidenav
+    .sidenav-container
+      h3 Top related gems
+      ul
+        - @gem_chart.each do |gem_object|
+          li
+            - if gem_object == @gem_object
+              = gem_object.name
+              =< fa_icon('circle')
+            - else
+              = link_to gem_object.name, gem_object_path(gem_object)
+              - if gem_object.downloads > @gem_object.downloads
+                =< fa_icon('chevron-up')
+              - else
+                =< fa_icon('chevron-down')

@@ -15,10 +15,20 @@ class GemObject < ApplicationRecord
     description: 'B'
   }
 
+  scope :without_category, -> { eager_load(:gem_categories).where(gem_categories: { id: nil }) }
+
   alias gem_versions versions
 
   def self.search(query)
     search_full_text(query)
+  end
+
+  def top_related_gems
+    GemObject
+      .joins(:gem_object_in_gem_categories)
+      .where(gem_object_in_gem_categories: { gem_category: gem_categories })
+      .order(downloads: :desc)
+      .limit(10)
   end
 
   def github_uri

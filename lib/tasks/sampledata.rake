@@ -22,4 +22,15 @@ namespace :sampledata do
       end
     end
   end
+
+  task add_gems_to_categories: :environment do
+    children_categories = GemCategory.children
+    gem_objects = GemObject.without_category
+    gems_count_for_one_category = gem_objects.count / children_categories.count
+    children_categories.each do |gem_category|
+      gem_objects.limit(gems_count_for_one_category).each do |gem_object|
+        gem_object.add_to_category!(gem_category)
+      end
+    end
+  end
 end

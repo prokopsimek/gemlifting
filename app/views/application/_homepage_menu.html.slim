@@ -5,7 +5,7 @@
   = menu_group pull: :right do
     - unless user_signed_in?
       li.navbar-text
-        = link_to user_github_omniauth_authorize_path, class: 'auth-button'
+        = link_to user_github_omniauth_authorize_path, class: 'auth-button btn btn-primary'
           = fa_icon('github', { text: 'Github login' })
     - else
       li.dropdown

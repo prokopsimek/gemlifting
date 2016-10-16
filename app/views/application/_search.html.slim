@@ -1,5 +1,11 @@
-#search
+#search.row
   = form_tag search_path, method: :get
-    = text_field_tag :q, (params[:q].present? ? params[:q] : nil), class: 'cmd-input', placeholder: 'Search'
-    = button_tag type: 'submit', class: ''
-      = fa_icon('search')
+    .col-md-9
+      = text_field_tag :q,
+              (params[:q].present? ? params[:q] : nil),
+              class: 'cmd-input form-control input-lg input-primary',
+              placeholder: 'Search',
+              type: :search,
+              autofocus: :on
+    .col-md-3
+      = button_tag 'Search', type: 'submit', class: 'btn btn-primary btn-lg pull-right'
