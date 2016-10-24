@@ -1,5 +1,5 @@
 class GemObject < ApplicationRecord
-  include PgSearch
+  include PgSearch, Proposable
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 

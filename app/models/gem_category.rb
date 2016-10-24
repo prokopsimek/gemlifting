@@ -1,4 +1,5 @@
 class GemCategory < ApplicationRecord
+  include Proposable
   extend FriendlyId
   friendly_id :name, use: :slugged
 

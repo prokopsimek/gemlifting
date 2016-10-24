@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024155615) do
+ActiveRecord::Schema.define(version: 20161024211902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,27 @@ ActiveRecord::Schema.define(version: 20161024155615) do
     t.index ["transported"], name: "index_metric_metrics_on_transported", using: :btree
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.string   "proposed_type"
+    t.integer  "proposed_id"
+    t.text     "note"
+    t.string   "proposed_attribute"
+    t.text     "proposed_value"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["proposed_type", "proposed_id"], name: "index_proposals_on_proposed_type_and_proposed_id", using: :btree
+  end
+
+  create_table "user_proposals", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "proposal_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["proposal_id"], name: "index_user_proposals_on_proposal_id", using: :btree
+    t.index ["user_id", "proposal_id"], name: "index_user_proposals_on_user_id_and_proposal_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_user_proposals_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",     null: false
     t.string   "encrypted_password",     default: "",     null: false
@@ -117,4 +138,6 @@ ActiveRecord::Schema.define(version: 20161024155615) do
   add_foreign_key "gem_categories", "gem_categories", column: "parent_id"
   add_foreign_key "gem_objects", "gem_categories"
   add_foreign_key "gem_versions", "gem_objects"
+  add_foreign_key "user_proposals", "proposals"
+  add_foreign_key "user_proposals", "users"
 end

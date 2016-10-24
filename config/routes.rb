@@ -12,8 +12,12 @@ Rails.application.routes.draw do
     delete 'users/sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :gem_categories, path: 'categories', only: [:index, :show]
-  resources :gem_objects, path: 'gems', only: [:show]
+  concern :proposable do
+    put 'proposals' => 'proposals#update'
+  end
+
+  resources :gem_categories, path: 'categories', only: [:index, :show], concerns: :proposable
+  resources :gem_objects, path: 'gems', only: [:show], concerns: :proposable
 
   get 'search' => 'application#search', as: :search
   get 'robots.txt', to: 'application#robots'
