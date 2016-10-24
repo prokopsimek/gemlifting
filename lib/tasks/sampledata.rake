@@ -29,7 +29,7 @@ namespace :sampledata do
     gems_count_for_one_category = gem_objects.count / children_categories.count
     children_categories.each do |gem_category|
       gem_objects.limit(gems_count_for_one_category).each do |gem_object|
-        gem_object.add_to_category!(gem_category)
+        gem_object.update!(gem_category: gem_category)
       end
     end
   end
