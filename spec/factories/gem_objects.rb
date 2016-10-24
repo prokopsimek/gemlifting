@@ -23,5 +23,6 @@ FactoryGirl.define do
     open_issues_count 0
     github_sync_at nil
     rubygems_sync_at nil
+    gem_category_id nil
   end
 end

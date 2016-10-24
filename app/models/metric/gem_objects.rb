@@ -76,7 +76,7 @@ class Metric::GemObjectsWithCategoryCount < Metric::Metric
   private
 
   def self.base_model
-    GemObjectInGemCategory.distinct(:gem_object_id)
+    GemObject.where.not(gem_category_id: nil)
   end
 end
 

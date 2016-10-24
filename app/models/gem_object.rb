@@ -3,19 +3,19 @@ class GemObject < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  has_many :gem_object_in_gem_categories, inverse_of: :gem_object
-  has_many :gem_categories, through: :gem_object_in_gem_categories, inverse_of: :gem_objects
+  belongs_to :gem_category, inverse_of: :gem_objects
   has_many :versions, class_name: GemVersion
 
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
+  validate :cannot_be_in_parental_category
 
   pg_search_scope :search_full_text, against: {
     name: 'A',
     description: 'B'
   }
 
-  scope :without_category, -> { eager_load(:gem_categories).where(gem_categories: { id: nil }) }
+  scope :without_category, -> { where(gem_category_id: nil) }
 
   alias gem_versions versions
 
@@ -25,8 +25,7 @@ class GemObject < ApplicationRecord
 
   def top_related_gems
     GemObject
-      .joins(:gem_object_in_gem_categories)
-      .where(gem_object_in_gem_categories: { gem_category: gem_categories })
+      .where(gem_category: gem_category)
       .order(downloads: :desc)
       .limit(10)
   end
@@ -34,11 +33,6 @@ class GemObject < ApplicationRecord
   def github_uri
     gh_uri = source_code_uri || homepage_uri
     gh_uri &.include?('github.com') ? gh_uri : nil
-  end
-
-  def add_to_category!(category)
-    gem_object_in_gem_categories
-      .create!(gem_category: category)
   end
 
   def read_readme
@@ -60,6 +54,12 @@ class GemObject < ApplicationRecord
   end
 
   private
+
+  def cannot_be_in_parental_category
+    if gem_category.present? && gem_category.is_parental?
+      errors.add(:base, 'Cannot add gem into parental category')
+    end
+  end
 
   def slug_candidates
     parameterized_name = name.present? ? name.parameterize.dasherize : name

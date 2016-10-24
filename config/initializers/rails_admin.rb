@@ -43,19 +43,13 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  config.model GemObjectInGemCategory do
-    visible false
-  end
-
   config.model GemObject do
-    exclude_fields :gem_object_in_gem_categories
     edit do
       exclude_fields :versions, :slug
     end
   end
 
   config.model GemCategory do
-    exclude_fields :gem_object_in_gem_categories
     edit do
       exclude_fields :slug
     end

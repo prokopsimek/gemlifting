@@ -70,7 +70,7 @@ RSpec.describe GemObject, type: :model do
     it 'should read attr read_readme' do
       readme_value = Base64.encode64('any readme')
       gem = build(:gem_object, readme: readme_value)
-      expect(gem.read_readme).to eq readme_value
+      expect(gem.read_readme).to eq 'any readme'
     end
   end
 
@@ -95,14 +95,14 @@ RSpec.describe GemObject, type: :model do
     end
   end
 
-  describe '#add_to_category!' do
+  describe 'add to category' do
     it 'should raise error if trying to add gem into parental category' do
       gem = create(:gem_object)
       parental_category = create(:gem_category)
 
       expect do
-        gem.add_to_category!(parental_category)
-      end.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Gem object cannot be in parental category')
+        gem.update!(gem_category: parental_category)
+      end.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Cannot add gem into parental category')
     end
 
     it 'should add gem into subcategory' do
@@ -110,9 +110,7 @@ RSpec.describe GemObject, type: :model do
       parental_category = create(:gem_category)
       category = create(:gem_category, name: 'Subcategory 1', parent: parental_category)
 
-      gem.add_to_category!(category)
-
-      expect(gem.gem_categories.size).to eq 1
+      gem.update!(gem_category: category)
     end
   end
 end
