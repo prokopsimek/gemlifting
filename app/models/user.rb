@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:github]
 
+  has_many :user_proposals
+  has_many :proposals, through: :user_proposals
+
   def is_superadmin?
     role == 'superadmin'
   end
