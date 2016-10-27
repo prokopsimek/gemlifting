@@ -15,10 +15,10 @@
 }
 
 .gravatar-navbar {
-  height: 50px;
-  width: 50px;
+  height: 100%;
+  width: 100%;
   border-radius: 27px;
-  border: 2px solid #fff;
+  //border: 2px solid #fff;
   cursor: pointer;
 }
 
@@ -41,44 +41,69 @@
 
 .navbar {
   border: none;
-  background-color: lightcoral;
+  background-color: transparent;
   width: 100%;
-  max-width: 1230px;
   margin: 0px auto 15px;
   border-radius: 0;
 
-  .navbar-nav > li > a.auth-button {
-    .btn-primary;
-    .fa {
-      font-size: 1.2em;
-      vertical-align: sub;
+  .navbar-nav {
+    .navbar-text {
+      margin: 8.5px;
+      .btn {
+        padding: 10px;
+      }
+
+      &.user-gravatar-wrapper {
+        margin: 0;
+
+        height: 100%;
+        width: auto;
+        padding: 5px 10px;
+      }
+    }
+
+    &.navbar-left, &.navbar-right {
+      height: 60px;
+      width: calc(~'100% + 15px');
+      background-color: @brand-primary;
+    }
+
+    &.navbar-left {
+      margin-left: -15px;
+
+      .navbar-brand {
+        float: left;
+        height: 100%;
+        padding: 0;
+        margin: 0 15px 0 25px;
+        border-left: 2px solid rgba(0, 0, 0, 0.2);
+        border-right: 2px solid rgba(0, 0, 0, 0.2);
+        background-clip: padding-box;
+
+        a {
+          width: auto;
+          height: calc(~'100% + 10px');
+          background-color: #fff;
+          padding: 15px 15px;
+          display: block;
+
+          img {
+            width: auto;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    li > a.auth-button {
+      .btn-primary;
+      .fa {
+        font-size: 1.2em;
+        vertical-align: sub;
+      }
     }
   }
-}
 
-.nav-container {
-  height: 77px;
-  width: 100%;
-}
-
-.navbar-brand {
-  float: left;
-  padding: 25px 15px;
-  font-size: 18px;
-  line-height: 20px;
-  height: 70px;
-
-  img {
-    width: 100px;
-    transform: translateY(-25%);
-  }
-}
-
-.navbar-text {
-  margin: 7.5px 7.5px;
-  .user-gravatar-wrapper img {
-    margin: 10px 10px;
-  }
 }
 
 .user-name-disabled-link {

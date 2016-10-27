@@ -1,20 +1,23 @@
 = nav_bar fixed: :top, responsive: true
-  = menu_group pull: :left do
-    =link_to root_path, class: 'navbar-brand'
-      = image_tag('http://alpha.yunoia.com/early-access-yunoia-logo.png')
-  = menu_group pull: :right do
-    - unless user_signed_in?
-      li.navbar-text
-        = link_to user_github_omniauth_authorize_path, class: 'auth-button btn btn-primary'
-          = fa_icon('github', { text: 'Github login' })
-    - else
-      li.dropdown
-        .navbar-text.dropdown-toggle.user-gravatar-wrapper data-toggle="dropdown"
-          = gravatar_tag current_user.email, :navbar
-        ul.dropdown-menu
-          li.disabled.user-name-disabled-link
-            a= current_user.nickname
-          li.divider
-          li
-            = link_to destroy_user_session_path, method: :delete
-              = fa_icon('sign-out', { text: 'Sign out' })
+  .col-md-8
+    = menu_group pull: :left
+      .navbar-brand
+        =link_to root_path, class: ''
+          = image_tag('logo-big.svg')
+  .col-md-4
+    = menu_group pull: :right
+      - unless user_signed_in?
+        li.navbar-text
+          = link_to user_github_omniauth_authorize_path, class: 'auth-button btn btn-primary'
+            = fa_icon('github', { text: 'Github login' })
+      - else
+        li.dropdown
+          .navbar-text.dropdown-toggle.user-gravatar-wrapper data-toggle="dropdown"
+            = gravatar_tag current_user.email, :navbar
+          ul.dropdown-menu
+            li.disabled.user-name-disabled-link
+              a= current_user.nickname
+            li.divider
+            li
+              = link_to destroy_user_session_path, method: :delete
+                = fa_icon('sign-out', { text: 'Sign out' })
