@@ -156,7 +156,17 @@
 
 .sidenav-container {
   background-color: lightcoral;
+  overflow: hidden;
 
   padding: 20px 20px;
   .default-margin;
+}
+
+ul.proposals li {
+  .transition(transform 1s;);
+
+  &.proposed {
+    .translate(-100%; 0);
+    background-color: greenyellow;
+  }
 }

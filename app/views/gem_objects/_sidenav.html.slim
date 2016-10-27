@@ -14,3 +14,21 @@
                 =< fa_icon('chevron-up')
               - else
                 =< fa_icon('chevron-down')
+
+    - if user_signed_in?
+      .sidenav-container
+        h3 Category proposals
+        ul.proposals
+          - @category_proposals.each do |proposal|
+            li data-proposed-attribute="#{proposal.proposed_attribute}" data-proposed-value="#{proposal.proposed_value}"
+              = proposal.note
+              = proposal.proposed_attribute
+              = proposal.proposed_value
+              = form_for proposal, url: gem_object_proposals_path(@gem_object), remote: true, method: :post do |f|
+                = f.collection_select :proposed_value, GemCategory.children, :id, :name
+                = f.hidden_field :proposed_attribute, value: 'category_id'
+                = f.submit 'Submit'
+        = form_for @gem_object.proposals.new, url: gem_object_proposals_path(@gem_object), remote: true do |f|
+          = f.collection_select :proposed_value, GemCategory.children, :id, :name, prompt: true
+          = f.hidden_field :proposed_attribute, value: 'category_id'
+          = f.submit 'Submit'

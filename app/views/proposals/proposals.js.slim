@@ -1,0 +1,2 @@
+- if @proposal.is_gem_object_type?
+  | $('ul.proposals li[data-proposed-attribute="#{@proposal.proposed_attribute}"][data-proposed-value="#{@proposal.proposed_value}"]').addClass('proposed')

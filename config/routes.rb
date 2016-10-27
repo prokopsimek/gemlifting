@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   concern :proposable do
-    put 'proposals' => 'proposals#update'
+    post 'proposals' => 'proposals#update'
   end
 
   resources :gem_categories, path: 'categories', only: [:index, :show], concerns: :proposable

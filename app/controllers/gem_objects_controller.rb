@@ -9,6 +9,7 @@ class GemObjectsController < ApplicationController
   def show
     gem_object!
     gem_chart
+    proposals
 
     @page_title = gem_object!.name
     @page_description = gem_object!.description
@@ -22,6 +23,14 @@ class GemObjectsController < ApplicationController
 
   def gem_chart
     @gem_chart ||= gem_object!.top_related_gems
+  end
+
+  def proposals
+    @category_proposals ||= gem_object!
+                              .proposals
+                              .where(proposed_attribute: 'category_id')
+                              .order('RANDOM()')
+                              .limit(10)
   end
 
 end
