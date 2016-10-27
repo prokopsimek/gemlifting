@@ -17,9 +17,9 @@
 .gravatar-navbar {
   height: 100%;
   width: 100%;
-  border-radius: 27px;
+  border-radius: 50px;
   //border: 2px solid #fff;
-  cursor: pointer;
+  //cursor: pointer;
 }
 
 .alert {
@@ -48,17 +48,42 @@
 
   .navbar-nav {
     .navbar-text {
-      margin: 8.5px;
+      margin: 7.5px;
       .btn {
         padding: 10px;
       }
 
       &.user-gravatar-wrapper {
-        margin: 0;
+        margin-top: 0;
+        margin-bottom: 0;
 
         height: 100%;
         width: auto;
         padding: 5px 10px;
+      }
+    }
+
+    .navbar-search {
+      //padding: 0;
+
+      form {
+        padding: 0;
+        margin-right: 0;
+        width: 100%;
+      }
+
+      .form-group input {
+        width: 320px;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #fff;
+        .placeholder(rgba(0,0,0,0.3););
+        font-size: 1.1em;
+        border: none;
+      }
+      button {
+        padding-left: 20px;
+        padding-right: 20px;
+        border: none;
       }
     }
 
@@ -95,8 +120,12 @@
       }
     }
 
-    li > a.auth-button {
-      .btn-primary;
+    li > a.btn {
+      border: none;
+      color: #fff;
+      font-size: 1.1em;
+      margin-left: 15px;
+      margin-right: 15px;
       .fa {
         font-size: 1.2em;
         vertical-align: sub;

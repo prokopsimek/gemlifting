@@ -4,20 +4,31 @@
       .navbar-brand
         =link_to root_path, class: ''
           = image_tag('logo-big.svg')
+      li.col-md-7.navbar-search.pull-right
+        = form_tag search_path, method: :get, class: 'navbar-form navbar-right'
+          .form-group.form-group-lg
+            = text_field_tag :q,
+                      (params[:q].present? ? params[:q] : nil),
+                      class: 'form-control input-lg',
+                      placeholder: 'Search for...',
+                      type: :search
+          = button_tag 'Search', type: 'submit', class: 'btn btn-primary btn-lg pull-right'
   .col-md-4
     = menu_group pull: :right
       - unless user_signed_in?
-        li.navbar-text
-          = link_to user_github_omniauth_authorize_path, class: 'auth-button btn btn-primary'
-            = fa_icon('github', { text: 'Github login' })
+        .col-md-offset-2
+          li.navbar-text
+            = link_to user_github_omniauth_authorize_path, class: 'auth-button btn btn-primary'
+              = fa_icon('github', { text: 'Github login' })
+          li.navbar-text
+            = link_to '/', class: 'btn btn-primary'
+              'Why?
       - else
-        li.dropdown
-          .navbar-text.dropdown-toggle.user-gravatar-wrapper data-toggle="dropdown"
+        div
+          li.navbar-text.user-gravatar-wrapper
             = gravatar_tag current_user.email, :navbar
-          ul.dropdown-menu
-            li.disabled.user-name-disabled-link
-              a= current_user.nickname
-            li.divider
-            li
-              = link_to destroy_user_session_path, method: :delete
-                = fa_icon('sign-out', { text: 'Sign out' })
+          li.navbar-text
+            a.btn.disabled= current_user.nickname
+          li.navbar-text.pull-right
+            = link_to destroy_user_session_path, method: :delete, class: 'btn btn-primary'
+              = fa_icon('sign-out', { text: 'Sign out' })
