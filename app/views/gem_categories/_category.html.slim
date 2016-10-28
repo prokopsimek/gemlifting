@@ -1,3 +1,10 @@
-= category.name
-ul
-  = render partial: 'gem_categories/subcategory', collection: category.subcategories
+div id="category-#{category.id}" class="category #{'hidden' if position > 6}"
+  h4 = category.name
+  span
+    - category.subcategories.limit(4).each.with_index do |subcategory, i|
+      = ', ' unless i.zero?
+      = link_to "#{subcategory.name}", gem_category_path(subcategory)
+    - if category.subcategories.size > 4
+      br
+      = link_to 'more', gem_category_path(category), class: 'more'
+

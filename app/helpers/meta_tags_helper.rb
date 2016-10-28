@@ -4,7 +4,7 @@ module MetaTagsHelper
     # This helper sets default values for SEO tags - it is possible to override them
     #   in controller or view (read more: https://github.com/kpumuk/meta-tags#seo-basics-and-metatags)
     display_meta_tags(
-      site: 'Gemlifting.com',
+      site: 'Gemlifting',
       reverse: true,
       keywords: %w(gem rubygem rubygems ruby rails toolbox catalog category categories tools resources services developer github popularity compare gems plugins overview activesupport activerecord actionmailer rack rake bundler mysql i18n),
       description: @page_description || 'asdf',
@@ -12,7 +12,7 @@ module MetaTagsHelper
         {
           title: :title,
           description: :description,
-          site_name: 'Gemlifting.com',
+          site_name: 'Gemlifting',
           image: (@page_image_url || image_url('logo.png')).to_s,
           url: request.url.to_s,
           type: 'product'
@@ -53,7 +53,7 @@ module MetaTagsHelper
     result_json = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      'name': 'Gemlifting.com',
+      'name': 'Gemlifting',
       'alternateName': 'Gemlifting.com',
       'url': 'https://www.gemlifting.com'
     }

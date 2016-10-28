@@ -1,4 +1,5 @@
 #categories-list
-  ul
-    - @categories.each do |category|
-      = render 'gem_categories/category', category: category
+  - @categories.each_with_index do |category, position|
+    - position += 1
+    = render 'gem_categories/category', category: category, position: position
+  = link_to 'ALL CATEGORIES', '', class: 'btn btn-primary btn-all-categories'

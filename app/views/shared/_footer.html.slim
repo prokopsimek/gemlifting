@@ -1,3 +1,17 @@
 footer.footer
-  .container
-    p.text-center Gemlifting.com &copy; #{Date.today.year}
+  .col-md-2.pull-left.text-left
+    span
+      /= link_to 'Follow @gemlifting', 'https://twitter.com/gemlifting', class: 'twitter-follow-button', data: { 'show-count': false }
+      /script src='//platform.twitter.com/widgets.js' charset='utf-8' async=true
+      = link_to 'https://www.facebook.com/gemlifting', target: :_blank
+        = fa_icon 'facebook'
+      = link_to 'https://github.com/gemlifting/gemlifting', target: :_blank
+        = fa_icon 'github'
+      = link_to 'https://twitter.com/gemlifting', target: :_blank
+        = fa_icon 'twitter'
+  .col-md-8.text-center
+    span Gemlifting &copy; #{Date.today.year}
+  .col-md-2.pull-right.text-right
+    span
+      = mail_to 'info@gemlifting.com'
+        = fa_icon 'envelope'

@@ -48,11 +48,35 @@
 @border-radius-small: 2px;
 @border-radius-large: 2px;
 
-.nav .fa:before{
-  font-size: 1.3em;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  #body-container {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 70px;
+  }
+}
+
+a {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  color: @brand-primary;
 }
 
 h3 {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.nav .fa:before{
+  font-size: 1.3em;
+}
+
+.inline {
+  display: inline-block;
 }

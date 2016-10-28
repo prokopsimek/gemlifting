@@ -1,4 +1,22 @@
 .col-md-4
   #sidenav
-    h1 sidenav
-    = yield :sidenav_content
+    .sidenav-container
+      h3 Gem of the week
+      = link_to 'Devise', '/'
+      p Maecenas faucibus mollis interdum. Morbi leo risus porta as concecteturac, vestibulus at eros. Morbi leo.
+    .sidenav-container
+      h3 News
+      .news
+        p
+          '20-12-2016
+          = link_to 'Railsgirls Prague', '/'
+        p Maecenas faucibus mollis interdum. Morbi leo risus porta as concecteturac, vestibulus at eros. Morbi leo.
+      .news
+        p
+          '08-09-2016
+          = link_to 'Rubyconf 2016', '/'
+        p Maecenas faucibus mollis interdum. Morbi leo risus porta as concecteturac, vestibulus at eros. Morbi leo.
+    .sidenav-container
+      h3 Found error?
+      p Report bug and make Gemlifting better!
+      = link_to 'Report a bug', '/'

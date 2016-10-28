@@ -28,7 +28,7 @@
 }
 
 .container-content {
-  margin-top: 100px;
+  padding-top: 100px;
 }
 
 .container-fluid {
@@ -45,6 +45,10 @@
   width: 100%;
   margin: 0px auto 15px;
   border-radius: 0;
+
+  a {
+    text-decoration: none;
+  }
 
   .navbar-nav {
     .navbar-text {
@@ -121,6 +125,9 @@
     }
 
     li > a.btn {
+      &.disabled {
+        opacity: 0.8;
+      }
       border: none;
       color: #fff;
       font-size: 1.1em;
@@ -140,16 +147,39 @@
 }
 
 #header {
-  background-color: lightgray;
-  min-height: 250px;
+  background-color: transparent;
+  .text-center;
 
-  padding: 10px 10px;
+  &.header-homepage {
+    margin-top: -30px;
+    margin-bottom: 70px;
+  }
+
+  img {
+    height: 100px;
+    margin: 0 auto;
+  }
 }
 
 #sidenav {
-  background-color: lightblue;
-
   padding: 0px 0px;
+
+  .sidenav-container {
+    .default-margin;
+    padding: 20px 20px;
+    background-color: #f2f2f2;
+    overflow: hidden;
+
+    font-size: 1.2em;
+
+    &>.news {
+      margin-bottom: 30px;
+    }
+
+    p {
+      color: rgba(0,0,0,0.5);
+    }
+  }
 }
 
 #search {
@@ -170,15 +200,49 @@
 }
 
 #categories-list {
-  background-color: lightsteelblue;
-  padding: 10px 10px;
+  //background-color: lightsteelblue;
+  padding: 10px 35px;
+
+  .btn-all-categories {
+    margin: 20px;
+    text-decoration: none;
+  }
+
+  .category {
+    display: inline-block;
+    padding: 5px 20px;
+    width: 50%;
+    vertical-align: top;
+
+    span, a:not(.more) {color: rgba(0,0,0,0.5);}
+
+    span {
+      line-height: 22px;
+    }
+  }
 }
 
 .footer {
-  background-color: lightcyan;
+  width: 100%;
+  max-height: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   padding: 10px 10px;
-
   margin-top: 20px;
+
+  z-index: 140;
+
+  background-color: rgba(0,0,0,0.1);
+
+  &, a {
+    color: rgba(0,0,0,0.5);
+  }
+
+  .pull-left .fa {
+    font-size: 18px;
+    margin-right: 15px;
+  }
 }
 
 #category-top {
@@ -205,14 +269,6 @@
 #gem-object-description {
   background-color: lightcyan;
   padding: 10px 20px;
-  .default-margin;
-}
-
-.sidenav-container {
-  background-color: lightcoral;
-  overflow: hidden;
-
-  padding: 20px 20px;
   .default-margin;
 }
 

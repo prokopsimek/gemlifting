@@ -14,8 +14,8 @@ namespace :sampledata do
           )
         rescue => e
           retry_count += 1
-          Rails.logger.error e.to_s
-          Rails.logger.error "Retry no.: #{retry_count}"
+          ap e.to_s
+          ap "Retry no.: #{retry_count}"
           retry if retry_count < 10
         end
 
@@ -32,8 +32,8 @@ namespace :sampledata do
             )
           rescue => e
             sretry_count += 1
-            Rails.logger.error e.to_s
-            Rails.logger.error "Retry no.: #{sretry_count}"
+            ap e.to_s
+            ap "Retry no.: #{sretry_count}"
             retry if sretry_count < 10
           end
         end
