@@ -3,9 +3,9 @@ class GemCategory < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  has_many :gem_objects, inverse_of: :gem_categories
+  has_many :gem_objects, inverse_of: :gem_category, dependent: :nullify
   belongs_to :parent, inverse_of: :subcategories, class_name: GemCategory
-  has_many :subcategories, inverse_of: :parent, class_name: GemCategory, foreign_key: :parent_id
+  has_many :subcategories, inverse_of: :parent, class_name: GemCategory, foreign_key: :parent_id, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
   validate :parent_cannot_have_parent, :cannot_be_nested_in_self
