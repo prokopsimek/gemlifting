@@ -120,6 +120,8 @@ GEM
     haml (4.0.7)
       tilt
     hashie (3.4.6)
+    highscore (1.2.1)
+      whatlanguage (>= 1.0.0)
     i18n (0.7.0)
     influxdb (0.3.9)
       cause
@@ -365,6 +367,7 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    whatlanguage (1.0.6)
 
 PLATFORMS
   ruby
@@ -386,6 +389,7 @@ DEPENDENCIES
   friendly_id (~> 5.1.0)
   gems
   gravatarify (~> 3.0.0)
+  highscore
   influxdb
   jbuilder (~> 2.5)
   jquery-rails
@@ -433,4 +437,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.1
+   1.13.4

@@ -146,3 +146,6 @@ gem 'influxdb'
 
 # search
 gem 'pg_search'
+
+# keywords
+gem 'highscore'
