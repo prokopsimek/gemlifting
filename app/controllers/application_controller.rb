@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   # GET /
   def home
-    @categories = GemCategory.parental.eager_load(:subcategories).order(:name)
+    @categories = GemCategory.parental.eager_load(subcategories: :parent).order(:name)
   end
 
   # GET /search?q=:query

@@ -9,4 +9,12 @@ $(document).on('turbolinks:load', function() {
         $('html, body').animate({scrollTop:target}, 'slow');
     });
 
+    // open other subcategories on homepage by clicking on 'more'
+    $('#categories-list .category .more').click(function(e){
+        e.preventDefault();
+        var category_id = $(this).data('category');
+        $('#categories-list #category-' + category_id + ' span.hidden').removeClass('hidden');
+        $('#categories-list #category-' + category_id + ' .more-wrapper').remove();
+    });
+
 });
