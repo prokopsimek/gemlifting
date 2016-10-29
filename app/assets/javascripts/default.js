@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
         $('#categories-list .category.hidden').removeClass('hidden');
         $(this).addClass('hidden');
         var target = $("#categories-list").offset().top;
-        $('html, body').animate({scrollTop:target}, 'slow');
+        $('html, body').animate({scrollTop:target}, 'fast');
     });
 
     // open other subcategories on homepage by clicking on 'more'
