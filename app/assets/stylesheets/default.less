@@ -18,8 +18,6 @@
   height: 100%;
   width: 100%;
   border-radius: 50px;
-  //border: 2px solid #fff;
-  //cursor: pointer;
 }
 
 .alert {
@@ -36,7 +34,12 @@
 }
 
 .content-left {
-  padding: 0;
+  padding: 0 15px;
+}
+
+.content-wrapper {
+  background-color: @content-background;
+  padding: 15px 15px;
 }
 
 .navbar {
@@ -171,7 +174,7 @@
   .sidenav-container {
     .default-margin;
     padding: 20px 20px;
-    background-color: #f2f2f2;
+    background-color: @content-background;
     overflow: hidden;
 
     font-size: 1.2em;
@@ -204,7 +207,6 @@
 }
 
 #categories-list {
-  //background-color: lightsteelblue;
   padding: 10px 35px;
 
   .btn-all-categories {
@@ -261,18 +263,35 @@
 
 
 #gem-object-top {
-  background-color: lightskyblue;
+  .gem-info-wrapper {
+    padding: 0px 0px;
+  }
 
+  .gem-count-wrapper {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    > div {
+      width: 50%;
+      height: 50%;
+      font-size: 1.5em;
+      line-height: 50px;
+
+      .fa {
+        width: 20px;
+      }
+    }
+  }
   .default-margin;
 }
 #gem-object-info {
-  background-color: lightgoldenrodyellow;
-  padding: 10px 20px;
   .default-margin;
 }
 #gem-object-description {
-  background-color: lightcyan;
-  padding: 10px 20px;
   .default-margin;
 }
 

@@ -1,6 +1,35 @@
 .col-md-4
   #sidenav
     .sidenav-container
+      p
+        = link_to @gem_object.homepage_uri
+          = fa_icon('home')
+          'Website
+      p
+        = link_to @gem_object.source_code_uri
+          = fa_icon('code')
+          'Source Code
+      p
+        = link_to @gem_object.documentation_uri
+          = fa_icon('book')
+          'Documentation
+      p
+        = link_to @gem_object.bug_tracker_uri
+          = fa_icon('bug')
+          'Issues
+      p
+        = fa_icon('download')
+        = @gem_object.downloads
+      p
+        = fa_icon('download')
+        = @gem_object.version_downloads
+      p
+        = link_to @gem_object.git_url
+          'Git url
+      p
+        = link_to @gem_object.ssh_url
+          'SSH url
+    .sidenav-container
       h3 Top related gems
       ul
         - @gem_chart.each do |gem_object|
