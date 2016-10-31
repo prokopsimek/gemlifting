@@ -1,22 +1,26 @@
 .col-md-4
   #sidenav
     .sidenav-container
-      p
-        = link_to @gem_object.homepage_uri
-          = fa_icon('home')
-          'Website
-      p
-        = link_to @gem_object.source_code_uri
-          = fa_icon('code')
-          'Source Code
-      p
-        = link_to @gem_object.documentation_uri
-          = fa_icon('book')
-          'Documentation
-      p
-        = link_to @gem_object.bug_tracker_uri
-          = fa_icon('bug')
-          'Issues
+      - if @gem_object.homepage_uri
+        p
+          = link_to @gem_object.homepage_uri
+            = fa_icon('home')
+            'Website
+      - if @gem_object.source_code_uri
+        p
+          = link_to @gem_object.source_code_uri
+            = fa_icon('code')
+            'Source Code
+      - if @gem_object.documentation_uri
+        p
+          = link_to @gem_object.documentation_uri
+            = fa_icon('book')
+            'Documentation
+      - if @gem_object.bug_tracker_uri
+        p
+          = link_to @gem_object.bug_tracker_uri
+            = fa_icon('bug')
+            'Issues
       p
         'Version:
         = @gem_object.version
@@ -28,19 +32,20 @@
         'Current version downloads:
         = fa_icon('download')
         = @gem_object.version_downloads
-      p
-        .input-group
-          span.input-group-addon git
-          = text_field_tag :git_url, @gem_object.git_url, id: 'clip-git-url', class: 'form-control select-onclick'
-          span.input-group-btn
-            =button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target':'#clip-git-url' }
-
-      p
-        .input-group
-          span.input-group-addon ssh
-          = text_field_tag :ssh_url, @gem_object.ssh_url, id: 'clip-ssh-url', class: 'form-control select-onclick'
-          span.input-group-btn
-            = button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target': '#clip-ssh-url' }
+      - if @gem_object.git_url
+        p
+          .input-group
+            span.input-group-addon git
+            = text_field_tag :git_url, @gem_object.git_url, id: 'clip-git-url', class: 'form-control select-onclick'
+            span.input-group-btn
+              =button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target':'#clip-git-url' }
+      - if @gem_object.ssh_url
+        p
+          .input-group
+            span.input-group-addon ssh
+            = text_field_tag :ssh_url, @gem_object.ssh_url, id: 'clip-ssh-url', class: 'form-control select-onclick'
+            span.input-group-btn
+              = button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target': '#clip-ssh-url' }
     .sidenav-container
       h3 Top related gems
       ul

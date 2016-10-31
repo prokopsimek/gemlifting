@@ -10,9 +10,13 @@ class GemObject < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validate :cannot_be_in_parental_category
 
-  pg_search_scope :search_full_text, against: {
+  pg_search_scope :search_any_word, against: {
     name: 'A',
-    description: 'B'
+    description: 'B',
+    info: 'C'
+  },
+  using: {
+    tsearch: { any_word: true }
   }
 
   scope :without_category, -> { where(gem_category_id: nil) }
@@ -20,7 +24,7 @@ class GemObject < ApplicationRecord
   alias gem_versions versions
 
   def self.search(query)
-    search_full_text(query)
+    search_any_word(query)
   end
 
   def top_related_gems
