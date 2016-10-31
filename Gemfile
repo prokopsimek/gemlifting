@@ -117,7 +117,7 @@ gem 'gravatarify', '~> 3.0.0'
 gem 'friendly_id', '~> 5.1.0'
 
 # Error tracking
-gem 'scout_apm'
+gem 'airbrake', '~> 5.0'
 
 # Newrelic
 gem 'newrelic_rpm'
