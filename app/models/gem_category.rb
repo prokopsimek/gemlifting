@@ -21,6 +21,10 @@ class GemCategory < ApplicationRecord
     gem_objects.order(downloads: :desc).limit(10)
   end
 
+  def categories_with_same_parent
+    parent.subcategories.order(:name) if parent.present?
+  end
+
   private
 
   def parent_cannot_have_parent

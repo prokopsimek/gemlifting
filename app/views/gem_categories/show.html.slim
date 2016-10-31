@@ -1,6 +1,8 @@
 #category-top.col-md-12
-  h1= @category.name
-  p= @category.description
+  .col-md-12.content-wrapper
+    .col-md-12.row
+      h1= @category.name
+      p= @category.description
 
 - if @category.is_parental?
   = render 'gem_categories/subcategories_list', subcategories: @category.subcategories

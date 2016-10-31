@@ -85,7 +85,7 @@
         width: 320px;
         background-color: rgba(0, 0, 0, 0.1);
         color: #fff;
-        .placeholder(rgba(255,255,255,0.5););
+        .placeholder(rgba(255, 255, 255, 0.5););
         font-size: 1.1em;
         border: none;
       }
@@ -177,12 +177,12 @@
 
     font-size: 1.2em;
 
-    &>.news {
+    & > .news {
       margin-bottom: 30px;
     }
 
     p {
-      color: rgba(0,0,0,0.5);
+      color: rgba(0, 0, 0, 0.5);
     }
   }
 }
@@ -218,7 +218,9 @@
     width: 50%;
     vertical-align: top;
 
-    span, a:not(.more) {color: rgba(0,0,0,0.5);}
+    span, a:not(.more) {
+      color: rgba(0, 0, 0, 0.5);
+    }
 
     span {
       line-height: 22px;
@@ -237,10 +239,10 @@
 
   z-index: 140;
 
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 
   &, a {
-    color: rgba(0,0,0,0.5);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .pull-left .fa {
@@ -250,15 +252,42 @@
 }
 
 #category-top {
-  background-color: lightgoldenrodyellow;
 
-  margin-bottom: 20px;
 }
 
 #category-detail {
-  background-color: lightseagreen;
+  .default-margin;
 }
 
+.gem-objects-list {
+  .gem-object-in-list {
+    .clearfix;
+    .content-wrapper;
+    .default-margin;
+
+    position: relative;
+
+    .gem-count-wrapper {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      right: 0;
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      > div {
+        width: 50%;
+        height: 50%;
+        //font-size: 1.5em;
+        line-height: 40px;
+
+        .fa {
+          width: 20px;
+        }
+      }
+    }
+  }
+}
 
 #gem-object-top {
   .gem-info-wrapper {
@@ -286,9 +315,11 @@
   }
   .default-margin;
 }
+
 #gem-object-info {
   .default-margin;
 }
+
 #gem-object-readme {
   .default-margin;
 

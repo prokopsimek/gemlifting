@@ -5,4 +5,13 @@
       ul
         - @gem_chart.each do |gem_object|
           li
-            = link_to gem_object.name, gem_object_path(gem_object)
+            => link_to gem_object.name, gem_object_path(gem_object)
+            => fa_icon('download')
+            = gem_object.downloads
+    - if @category.categories_with_same_parent.any?
+      .sidenav-container
+        h3 Related Categories
+        ul
+          - @category.categories_with_same_parent.each do |gem_category|
+            li
+              = link_to gem_category.name, gem_category_path(gem_category)

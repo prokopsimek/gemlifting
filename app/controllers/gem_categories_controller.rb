@@ -2,7 +2,7 @@ class GemCategoriesController < ApplicationController
 
   # GET /categories
   def index
-    
+
   end
 
   # GET /categories/:id
