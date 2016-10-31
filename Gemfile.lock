@@ -39,6 +39,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    airbrake (5.6.1)
+      airbrake-ruby (~> 1.6)
+    airbrake-ruby (1.6.0)
     arel (7.1.2)
     ast (2.3.0)
     autoprefixer-rails (6.5.0)
@@ -302,7 +305,6 @@ GEM
     sawyer (0.7.0)
       addressable (>= 2.3.5, < 2.5)
       faraday (~> 0.8, < 0.10)
-    scout_apm (2.1.12)
     sidekiq (4.2.2)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -372,6 +374,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake (~> 5.0)
   autoprefixer-rails
   awesome_print
   better_errors
@@ -416,7 +419,6 @@ DEPENDENCIES
   rspec-support
   rubocop
   sass-rails (~> 5.0)
-  scout_apm
   sidekiq
   sidekiq-scheduler (~> 2.0)
   sidekiq-unique-jobs
