@@ -18,17 +18,29 @@
           = fa_icon('bug')
           'Issues
       p
+        'Version:
+        = @gem_object.version
+      p
+        'Downloads:
         = fa_icon('download')
         = @gem_object.downloads
       p
+        'Current version downloads:
         = fa_icon('download')
         = @gem_object.version_downloads
       p
-        = link_to @gem_object.git_url
-          'Git url
+        .input-group
+          span.input-group-addon git
+          = text_field_tag :git_url, @gem_object.git_url, id: 'clip-git-url', class: 'form-control select-onclick'
+          span.input-group-btn
+            =button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target':'#clip-git-url' }
+
       p
-        = link_to @gem_object.ssh_url
-          'SSH url
+        .input-group
+          span.input-group-addon ssh
+          = text_field_tag :ssh_url, @gem_object.ssh_url, id: 'clip-ssh-url', class: 'form-control select-onclick'
+          span.input-group-btn
+            = button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target': '#clip-ssh-url' }
     .sidenav-container
       h3 Top related gems
       ul
@@ -61,3 +73,12 @@
           = f.collection_select :proposed_value, GemCategory.children, :id, :name, prompt: true
           = f.hidden_field :proposed_attribute, value: 'category_id'
           = f.submit 'Submit'
+    .sidenav-container
+      h3 Versions
+      ul
+        - @gem_object.versions.each do |gem_version|
+          li = gem_version.number
+          ul
+            li = gem_version.downloads_count
+            li = l gem_version.built_at.to_date
+            li = gem_version.summary

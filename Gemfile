@@ -146,3 +146,9 @@ gem 'influxdb'
 
 # search
 gem 'pg_search'
+
+# copy to clipboard
+gem 'clipboard-rails'
+
+# code highlight
+gem 'rouge'

@@ -4,7 +4,7 @@ class GemObject < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   belongs_to :gem_category, inverse_of: :gem_objects
-  has_many :versions, class_name: GemVersion
+  has_many :versions, -> { order(number: :desc) }, class_name: GemVersion
 
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
@@ -42,7 +42,7 @@ class GemObject < ApplicationRecord
   def html_readme
     return nil if readme.nil?
 
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(link_attributes: { target: '_blank' }), autolink: true)
+    markdown = Redcarpet::Markdown.new(HTML.new(link_attributes: { target: '_blank' }), autolink: true, fenced_code_blocks: true)
     markdown.render(read_readme).html_safe
   end
 
