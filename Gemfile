@@ -152,3 +152,6 @@ gem 'clipboard-rails'
 
 # code highlight
 gem 'rouge'
+
+# rack-timeout
+gem 'rack-timeout'
