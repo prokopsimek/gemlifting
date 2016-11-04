@@ -46,7 +46,10 @@ class GemObject < ApplicationRecord
   def html_readme
     return nil if readme.nil?
 
-    markdown = Redcarpet::Markdown.new(::HTML.new(link_attributes: { target: '_blank' }), autolink: true, fenced_code_blocks: true)
+    markdown = Redcarpet::Markdown.new(::HTML.new(link_attributes: { target: '_blank' }),
+                                       autolink: true,
+                                       fenced_code_blocks: true,
+                                       lax_spacing: true)
     markdown.render(read_readme).html_safe
   end
 
