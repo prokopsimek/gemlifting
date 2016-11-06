@@ -32,6 +32,12 @@
         'Current version downloads:
         = fa_icon('download')
         = @gem_object.version_downloads
+      p
+        .input-group
+          span.input-group-addon gemfile
+          = text_field_tag :gemfile, "gem '#{@gem_object.name}'", id: 'clip-gemfile-url', class: 'form-control select-onclick'
+          span.input-group-btn
+            =button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target':'#clip-gemfile-url' }
       - if @gem_object.git_url
         p
           .input-group
