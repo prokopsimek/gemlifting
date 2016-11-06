@@ -22,12 +22,9 @@
             = fa_icon('bug')
             'Issues
       p
-        'Version:
-        = @gem_object.version
-      p
         => fa_icon('download')
         => @gem_object.version_downloads
-        '(current)
+        = "(v#{@gem_object.version})"
       p
         => fa_icon('download')
         => @gem_object.downloads
