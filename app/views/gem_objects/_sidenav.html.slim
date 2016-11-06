@@ -25,13 +25,13 @@
         'Version:
         = @gem_object.version
       p
-        'Downloads:
-        = fa_icon('download')
-        = @gem_object.downloads
+        => fa_icon('download')
+        => @gem_object.version_downloads
+        '(current)
       p
-        'Current version downloads:
-        = fa_icon('download')
-        = @gem_object.version_downloads
+        => fa_icon('download')
+        => @gem_object.downloads
+        '(total)
       p
         .input-group
           span.input-group-addon gemfile
