@@ -16,7 +16,9 @@ class GemObject < ApplicationRecord
     info: 'C'
   },
   using: {
-    tsearch: { any_word: true }
+    tsearch: {
+      any_word: true
+    }
   }
 
   scope :without_category, -> { where(gem_category_id: nil) }
@@ -25,6 +27,7 @@ class GemObject < ApplicationRecord
 
   def self.search(query)
     search_any_word(query)
+      .with_pg_search_highlight
   end
 
   def top_related_gems

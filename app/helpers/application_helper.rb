@@ -15,4 +15,9 @@ module ApplicationHelper
     end
 
   end
+
+  def number_to_human_with_delimiter(number)
+    return nil if number.nil?
+    number_to_human(number)
+  end
 end

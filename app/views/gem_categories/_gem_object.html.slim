@@ -5,13 +5,13 @@ div.gem-object-in-list id="gem-object-#{gem_object.slug}"
   .pull-right.gem-count-wrapper
     .gem-count.gem-count-stars
       => fa_icon('star')
-      = gem_object.stargazers_count
+      = number_to_human_with_delimiter(gem_object.stargazers_count) || 'N/A'
     .gem-count
       => fa_icon('eye')
-      = gem_object.watchers_count
+      = number_to_human_with_delimiter(gem_object.watchers_count) || 'N/A'
     .gem-count
       => fa_icon('bug')
-      = gem_object.open_issues_count
+      = number_to_human_with_delimiter(gem_object.open_issues_count) || 'N/A'
     .gem-count
       => fa_icon('code-fork')
-      = gem_object.forks_count
+      = number_to_human_with_delimiter(gem_object.forks_count) || 'N/A'

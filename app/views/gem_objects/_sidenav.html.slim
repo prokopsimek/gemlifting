@@ -23,11 +23,11 @@
             'Issues
       p
         => fa_icon('download')
-        => "#{@gem_object.downloads} total"
+        => "#{number_to_human_with_delimiter(@gem_object.downloads)} total"
       hr
       p
         .input-group
-          span.input-group-addon gemfile
+          span.input-group-addon Gemfile
           = text_field_tag :gemfile, "gem '#{@gem_object.name}'", id: 'clip-gemfile-url', class: 'form-control select-onclick'
           span.input-group-btn
             =button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target':'#clip-gemfile-url' }
@@ -85,7 +85,7 @@
           =< "(current)" if gem_version.number == @gem_object.version
         p.downloads-and-date
           => fa_icon('download')
-          = gem_version.downloads_count
+          = number_to_human_with_delimiter(gem_version.downloads_count)
           span.pull-right
             => fa_icon('calendar')
             = l gem_version.built_at.to_date
