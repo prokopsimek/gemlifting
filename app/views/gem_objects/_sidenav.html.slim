@@ -1,6 +1,6 @@
 .col-md-4
   #sidenav
-    .sidenav-container
+    .sidenav-container.gem-object-sidenav-info
       - if @gem_object.homepage_uri
         p
           = link_to @gem_object.homepage_uri
@@ -23,12 +23,8 @@
             'Issues
       p
         => fa_icon('download')
-        => @gem_object.version_downloads
-        = "(v#{@gem_object.version})"
-      p
-        => fa_icon('download')
-        => @gem_object.downloads
-        '(total)
+        => "#{@gem_object.downloads} total"
+      hr
       p
         .input-group
           span.input-group-addon gemfile
@@ -81,12 +77,17 @@
           = f.collection_select :proposed_value, GemCategory.children, :id, :name, prompt: true
           = f.hidden_field :proposed_attribute, value: 'category_id'
           = f.submit 'Submit'
-    .sidenav-container
+    .sidenav-container.versions-list
       h3 Versions
-      ul
-        - @gem_object.versions.each do |gem_version|
-          li = gem_version.number
-          ul
-            li = gem_version.downloads_count
-            li = l gem_version.built_at.to_date
-            li = gem_version.summary
+      - @gem_object.versions.each do |gem_version|
+        p.version-number 
+          = gem_version.number
+          =< "(current)" if gem_version.number == @gem_object.version
+        p.downloads-and-date
+          => fa_icon('download')
+          = gem_version.downloads_count
+          span.pull-right
+            => fa_icon('calendar')
+            = l gem_version.built_at.to_date
+        p.summary = gem_version.summary
+        hr

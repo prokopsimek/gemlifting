@@ -26,7 +26,7 @@
 }
 
 .container-content {
-  padding-top: 100px;
+  padding-top: 70px;
 }
 
 .container-fluid {
@@ -169,6 +169,7 @@
   &.header-homepage {
     margin-top: -30px;
     margin-bottom: 70px;
+    margin-top: 30px;
   }
 
   img {
@@ -194,6 +195,35 @@
 
     p {
       color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .versions-list {
+    h3 {
+      margin-bottom: 10%;
+    }
+
+    .version-number {
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.9);
+    }
+
+    .downloads-and-date {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    .summary {
+      font-size: 0.8em;
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    hr {
+      display: block;
+      height: 1px;
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 1em 0;
+      padding: 0;
     }
   }
 }
@@ -313,11 +343,15 @@
     padding-top: 15px;
     padding-bottom: 15px;
 
-    > div {
-      width: 50%;
-      height: 50%;
+    > div.gem-count {
+      display: inline-block;
+      padding: 0px 15px;
       font-size: 1.5em;
       line-height: 50px;
+
+      &.gem-count-stars {
+        color: @brand-primary;
+      }
 
       .fa {
         width: 20px;
@@ -325,6 +359,13 @@
     }
   }
   .default-margin;
+}
+
+.gem-object-sidenav-info {
+  a .fa, p .fa {
+    font-size: 1.6em;
+    margin-right: 3%;
+  }
 }
 
 #gem-object-info {
