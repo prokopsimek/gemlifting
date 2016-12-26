@@ -316,11 +316,14 @@
       padding-top: 15px;
       padding-bottom: 15px;
 
-      > div {
-        width: 50%;
-        height: 50%;
-        //font-size: 1.5em;
+      > div.gem-count {
+        display: inline-block;
+        padding: 0px 10px;
         line-height: 40px;
+
+        &.gem-count-stars {
+          color: @brand-primary;
+        }
 
         .fa {
           width: 20px;
@@ -374,6 +377,10 @@
 
 #gem-object-readme {
   .default-margin;
+
+  img {
+    max-width: 100%;
+  }
 
   pre {
     code {

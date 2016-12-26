@@ -1,17 +1,17 @@
 div.gem-object-in-list id="gem-object-#{gem_object.slug}"
-  .col-md-8.row
+  .col-md-12.row
     h3= link_to gem_object.name, gem_object_path(gem_object)
     p= gem_object.info
-  .col-md-4.pull-right.row.gem-count-wrapper
-    .col-md-2.gem-count
-      => fa_icon('download')
-      = gem_object.downloads
-    .col-md-2.gem-count
+  .pull-right.gem-count-wrapper
+    .gem-count.gem-count-stars
       => fa_icon('star')
       = gem_object.stargazers_count
-    .col-md-2.gem-count
+    .gem-count
       => fa_icon('eye')
       = gem_object.watchers_count
-    .col-md-2.gem-count
+    .gem-count
       => fa_icon('bug')
       = gem_object.open_issues_count
+    .gem-count
+      => fa_icon('code-fork')
+      = gem_object.forks_count
