@@ -42,10 +42,6 @@
   padding: 15px 15px;
 }
 
-highlight {
-  color: @brand-primary;
-}
-
 #flash-messages {
   position: fixed;
   top: 10px;
@@ -200,6 +196,23 @@ highlight {
     p {
       color: rgba(0, 0, 0, 0.5);
     }
+
+    &.top-related-gems{
+      p {
+        &.current {
+          color: rgba(0, 0, 0, 0.7);
+        }
+
+        &.lower {
+          // color: rgba(200, 0, 0, 0.6);
+        }
+
+        &.higher {
+          // color: rgba(0, 200, 0, 0.6);
+        }
+      }
+    }
+
   }
 
   .versions-list {
