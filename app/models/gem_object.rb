@@ -8,7 +8,6 @@ class GemObject < ApplicationRecord
 
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
-  validate :cannot_be_in_parental_category
 
   pg_search_scope :search_any_word, against: {
     name: 'A',
@@ -64,12 +63,6 @@ class GemObject < ApplicationRecord
   end
 
   private
-
-  def cannot_be_in_parental_category
-    if gem_category.present? && gem_category.is_parental?
-      errors.add(:base, 'Cannot add gem into parental category')
-    end
-  end
 
   def slug_candidates
     parameterized_name = name.present? ? name.parameterize.dasherize : name

@@ -2,12 +2,12 @@
   #sidenav
     .sidenav-container
       h3 Top gems in category
-      ul
-        - @gem_chart.each do |gem_object|
-          li
-            => link_to gem_object.name, gem_object_path(gem_object)
+      - @gem_chart.each do |gem_object|
+        p
+          => link_to gem_object.name, gem_object_path(gem_object)
+          span.pull-right
             => fa_icon('download')
-            = gem_object.downloads
+            = number_to_human_with_delimiter(gem_object.downloads)
     - if @category.categories_with_same_parent.any?
       .sidenav-container
         h3 Related Categories
