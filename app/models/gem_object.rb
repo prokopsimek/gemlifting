@@ -4,7 +4,7 @@ class GemObject < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   belongs_to :gem_category, inverse_of: :gem_objects
-  has_many :versions, -> { order(number: :desc) }, class_name: GemVersion
+  has_many :versions, -> { order(number: :desc) }, class_name: GemVersion, dependent: :destroy
 
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
