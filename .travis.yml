@@ -1,3 +1,12 @@
 language: ruby
+
+sevices:
+  - postgresql
+
+before_install:
+  - createdatabase gemlifting_test
+  - cp config/database.travis.yml config/database.yml
+
 rvm:
   - 2.3.1
+  - 2.5.0-dev
