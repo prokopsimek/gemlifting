@@ -4,7 +4,7 @@ sevices:
   - postgresql
 
 before_install:
-  - createdatabase gemlifting_test
+  - createdb gemlifting_test
   - cp config/database.travis.yml config/database.yml
 
 rvm:
