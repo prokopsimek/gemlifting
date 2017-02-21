@@ -9,9 +9,13 @@ class Services::RubygemsImporter
   end
 
   def import(name)
-    gem_info = Gems.info(name)
+    begin
+      gem_info = Gems.info(name)
+    rescue JSON::ParserError => e
+      Rails.logger.error("GemNotFound: Gem with name \"#{name}\" was not found on Rubygems")
+      return nil
+    end
 
-    return nil if gem_info == "This rubygem could not be found."
 
     ActiveRecord::Base.transaction do
       gem_obj = GemObject.find_or_initialize_by(name: gem_info['name'])
