@@ -16,9 +16,11 @@ class RubygemsImporterJob < SidekiqJobBase
       Services::RubygemsImporter.new.import(new_gem_name)
     end
 
+    new_gems_names = nil
+
     # process gems ordered by oldest rubygems sync
     count = GemObject.count
-    batch = 500
+    batch = 100
     (0..(count - batch)).step(batch) do |i|
       GemObject.order(rubygems_sync_at: :asc).offset(i).limit(batch).each do |gem_object|
         Services::RubygemsImporter.new.import(gem_object.name)
