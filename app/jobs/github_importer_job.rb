@@ -1,4 +1,6 @@
 class GithubImporterJob < SidekiqJobBase
+  sidekiq_options unique: :while_executing
+
   def perform
     Rails.logger.info "==== GithubImporterJob START ===="
     start_time = Time.now
