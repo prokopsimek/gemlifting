@@ -130,18 +130,16 @@ end
 
 class Metric::GemObjectsWithGithubUriInHomepageUriOrSourceCodeUriCount < Metric::Metric
   def self.measure_current_value
-    def self.measure_current_value
-      base_model.count
-    end
+    base_model.count
+  end
 
-    def self.measure_past_value(date)
-      base_model.where('created_at <= ?', date).count
-    end
+  def self.measure_past_value(date)
+    base_model.where('created_at <= ?', date).count
+  end
 
-    private
+  private
 
-    def self.base_model
-      GemObject.where("homepage_uri ILIKE '%github%' OR source_code_uri ILIKE '%github%'")
-    end
+  def self.base_model
+    GemObject.where("homepage_uri ILIKE '%github%' OR source_code_uri ILIKE '%github%'")
   end
 end
