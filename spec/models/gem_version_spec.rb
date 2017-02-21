@@ -5,9 +5,7 @@ RSpec.describe GemVersion, type: :model do
     it 'should validate version' do
       gem_version = GemVersion.new
 
-      expect(gem_version.valid?).to be false
-      expect(gem_version.errors.full_messages.size).to eq 1
-      expect(gem_version.errors.full_messages).to include 'Gem object can\'t be blank'
+      expect(gem_version.valid?).to be true
     end
 
     it 'should be valid version with gem object' do
