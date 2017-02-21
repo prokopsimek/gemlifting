@@ -10,5 +10,10 @@ before_install:
 
 rvm:
   - 2.3.1
-  - 2.4.0
-  - 2.5.0-dev
+
+matrix:
+  include:
+    - rvm: 2.4.0
+      gemfile: gemfiles/ruby-2.4
+    - rvm: 2.5.0-dev
+      gemfile: gemfiles/ruby-2.5

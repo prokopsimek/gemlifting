@@ -155,3 +155,5 @@ gem 'rouge'
 
 # rack-timeout
 gem 'rack-timeout'
+
+gem 'rake'
