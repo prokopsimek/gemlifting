@@ -1,5 +1,9 @@
 div id="category-#{category.id}" class="category #{'hidden' if position > 10}"
-  = link_to "#{category.name}", gem_category_path(category), class: 'parental-category-name'
+  div
+    = link_to category.name, gem_category_path(category), class: 'parental-category-name'
+    '
+    small = "(#{category.gem_objects.count})"
+
   span.subcategories-list
     - category.subcategories.each_with_index do |subcategory, i|
       span class="#{'hidden' if i > 3}"

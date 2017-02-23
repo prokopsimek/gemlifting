@@ -18,6 +18,9 @@ class GemCategoriesController < ApplicationController
 
   def category!
     @category ||= GemCategory.eager_load(:subcategories, :gem_objects).friendly.find(params[:id])
+    @gem_objects = @category.gem_objects.page(params[:page])
+
+    @category
   end
 
   def gem_chart

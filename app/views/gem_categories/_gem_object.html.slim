@@ -1,7 +1,7 @@
 div.gem-object-in-list id="gem-object-#{gem_object.slug}"
   .col-md-12.row
     h3= link_to gem_object.name, gem_object_path(gem_object)
-    p= gem_object.info
+    p= truncate gem_object.info, length: 500
   .pull-right.gem-count-wrapper
     .gem-count.gem-count-stars
       => fa_icon('star')

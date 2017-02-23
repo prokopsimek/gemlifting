@@ -7,5 +7,5 @@
       p= @category.description
 
 = render 'gem_categories/subcategories_list', subcategories: @category.subcategories if @category.is_parental?
-= render 'gem_categories/gem_objects_list', gem_objects: @category.gem_objects
+= render 'gem_categories/gem_objects_list', gem_objects: @gem_objects
 = render 'gem_categories/sidenav'
