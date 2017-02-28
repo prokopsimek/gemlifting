@@ -16,9 +16,15 @@ class RubygemsImporterJob < SidekiqJobBase
       Services::RubygemsImporter.new.import(new_gem_name)
     end
 
+    new_gems_names = nil
+
     # process gems ordered by oldest rubygems sync
-    GemObject.order(rubygems_sync_at: :asc).each do |gem_object|
-      Services::RubygemsImporter.new.import(gem_object.name)
+    count = GemObject.count
+    batch = 100
+    (0..(count - batch)).step(batch) do |i|
+      GemObject.order(rubygems_sync_at: :asc).offset(i).limit(batch).each do |gem_object|
+        Services::RubygemsImporter.new.import(gem_object.name)
+      end
     end
 
     Rails.logger.info "==== RubygemsImporterJob END - GemObjects count: #{GemObject.count}; It took: #{TimeDifference.between(start_time, Time.now).in_general} ===="

@@ -17,17 +17,19 @@ class Environment
 
     # this method returns environment flavor if exits
     def env_tag
-      tag = if ENV['ENV_FLAVOR'].to_s == 'production'
-              'www'
-            elsif ENV['ENV_FLAVOR'].to_s == 'staging'
-              'staging'
-            elsif (ENV['ENV_FLAVOR'].to_s == 'development-online') && ENV['ENV_SUB_FLAVOR'].blank?
-              'dev'
+      tag = if current?('development-online staging production')
+              ENV['ENV_FLAVOR'].to_s
             else
               Rails.env
             end
 
       tag
+    end
+
+    def env_subdomain
+      return 'dev' if current?('development-online')
+      return 'staging' if current?('staging')
+      return 'www' if current?('production')
     end
   end
 end

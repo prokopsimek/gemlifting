@@ -1,1 +1,17 @@
-li= link_to gem_object.name, gem_object_path(gem_object)
+div.gem-object-in-list id="gem-object-#{gem_object.slug}"
+  .col-md-12.row
+    h3= link_to gem_object.name, gem_object_path(gem_object)
+    p= gem_object.info
+  .pull-right.gem-count-wrapper
+    .gem-count.gem-count-stars
+      => fa_icon('star')
+      = number_to_human_with_delimiter(gem_object.stargazers_count) || 'N/A'
+    .gem-count
+      => fa_icon('eye')
+      = number_to_human_with_delimiter(gem_object.watchers_count) || 'N/A'
+    .gem-count
+      => fa_icon('bug')
+      = number_to_human_with_delimiter(gem_object.open_issues_count) || 'N/A'
+    .gem-count
+      => fa_icon('code-fork')
+      = number_to_human_with_delimiter(gem_object.forks_count) || 'N/A'

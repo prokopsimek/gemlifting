@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
@@ -117,7 +115,7 @@ gem 'gravatarify', '~> 3.0.0'
 gem 'friendly_id', '~> 5.1.0'
 
 # Error tracking
-gem 'scout_apm'
+gem 'airbrake', '~> 5.0'
 
 # Newrelic
 gem 'newrelic_rpm'
@@ -149,3 +147,14 @@ gem 'pg_search'
 
 # keywords
 gem 'highscore'
+
+# copy to clipboard
+gem 'clipboard-rails'
+
+# code highlight
+gem 'rouge'
+
+# rack-timeout
+gem 'rack-timeout'
+
+gem 'rake'

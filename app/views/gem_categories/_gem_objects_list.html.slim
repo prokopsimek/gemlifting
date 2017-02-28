@@ -1,6 +1,7 @@
-#category-detail.col-md-8
-  - if gem_objects.any?
-    = render partial: 'gem_categories/gem_object', collection: gem_objects
-  - else
-    h4 No gems in this category.
+.col-md-8.content-left
+  #category-detail.gem-objects-list
+    - if gem_objects.any?
+      = render partial: 'gem_categories/gem_object', collection: gem_objects
+    - else
+      h4 No gems in this category.
 

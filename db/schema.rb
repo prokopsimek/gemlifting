@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024211902) do
+ActiveRecord::Schema.define(version: 20161226221031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "gem_categories", force: :cascade do |t|
     t.string   "name"
@@ -22,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161024211902) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "slug",        null: false
-    t.index ["name"], name: "index_gem_categories_on_name", unique: true, using: :btree
+    t.index ["name", "parent_id"], name: "index_gem_categories_on_name_and_parent_id", unique: true, using: :btree
     t.index ["slug"], name: "index_gem_categories_on_slug", unique: true, using: :btree
   end
 

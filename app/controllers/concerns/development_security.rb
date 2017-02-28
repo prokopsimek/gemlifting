@@ -16,7 +16,7 @@ module DevelopmentSecurity
           request_http_basic_authentication
         else
           # if authorized, set cookie
-          cookies[:x_dev_token] = { value: correct_access_token, domain: COOKIES_DOMAIN }
+          cookies[:x_dev_token] = { value: correct_access_token, domain: :all }
         end
       end
     end

@@ -24,5 +24,6 @@ module Gemlifting
 
     config.active_job.queue_adapter = :sidekiq
     config.active_job.queue_name_prefix = ENV['ENV_FLAVOR'] || Rails.env
+
   end
 end

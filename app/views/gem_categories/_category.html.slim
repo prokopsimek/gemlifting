@@ -1,12 +1,11 @@
-div id="category-#{category.id}" class="category #{'hidden' if position > 6}"
-  h4 = category.name
-  span
+div id="category-#{category.id}" class="category #{'hidden' if position > 10}"
+  = link_to "#{category.name}", gem_category_path(category), class: 'parental-category-name'
+  span.subcategories-list
     - category.subcategories.each_with_index do |subcategory, i|
-      span class="#{'hidden' if i > 4}"
+      span class="#{'hidden' if i > 3}"
         = ', ' unless i.zero?
         = link_to "#{subcategory.name}", gem_category_path(subcategory)
       - if i == 4
         span.more-wrapper
-          br
+          = ', '
           = link_to 'more', '#', class: 'more', data: { category: category.id }
-

@@ -1,7 +1,5 @@
 #subcategories-list.col-md-12
-  - if subcategories.any?
-    ul
-      - subcategories.each do |subcategory|
-        li= link_to subcategory.name, gem_category_path(subcategory)
-  - else
-    p No subcategories
+  - subcategories.each do |subcategory|
+    .one-subcategory
+      = link_to gem_category_path(subcategory)
+        = subcategory.name

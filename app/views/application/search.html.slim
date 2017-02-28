@@ -2,6 +2,10 @@ h1= "Search for \"#{params[:q]}\""
 
 = render 'search'
 
-ul
-- @gem_objects.each do |gem_object|
-  li= link_to gem_object.name, gem_object_path(gem_object)
+.col-md-12.content-left
+  #search-results.gem-objects-list
+    - if @gem_objects.any?
+      = render partial: 'gem_categories/gem_object', collection: @gem_objects
+    - else
+      .content-wrapper.text-center
+        h3 No results for "#{params[:q]}"

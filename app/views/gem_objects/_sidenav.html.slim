@@ -1,19 +1,64 @@
 .col-md-4
   #sidenav
-    .sidenav-container
+    .sidenav-container.gem-object-sidenav-info
+      - if @gem_object.homepage_uri
+        p
+          = link_to @gem_object.homepage_uri
+            = fa_icon('home')
+            'Website
+      - if @gem_object.source_code_uri
+        p
+          = link_to @gem_object.source_code_uri
+            = fa_icon('code')
+            'Source Code
+      - if @gem_object.documentation_uri
+        p
+          = link_to @gem_object.documentation_uri
+            = fa_icon('book')
+            'Documentation
+      - if @gem_object.bug_tracker_uri
+        p
+          = link_to @gem_object.bug_tracker_uri
+            = fa_icon('bug')
+            'Issues
+      p
+        => fa_icon('download')
+        => "#{number_to_human_with_delimiter(@gem_object.downloads)} total"
+      hr
+      p
+        .input-group
+          span.input-group-addon Gemfile
+          = text_field_tag :gemfile, "gem '#{@gem_object.name}'", id: 'clip-gemfile-url', class: 'form-control select-onclick'
+          span.input-group-btn
+            =button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target':'#clip-gemfile-url' }
+      - if @gem_object.git_url
+        p
+          .input-group
+            span.input-group-addon git
+            = text_field_tag :git_url, @gem_object.git_url, id: 'clip-git-url', class: 'form-control select-onclick'
+            span.input-group-btn
+              =button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target':'#clip-git-url' }
+      - if @gem_object.ssh_url
+        p
+          .input-group
+            span.input-group-addon ssh
+            = text_field_tag :ssh_url, @gem_object.ssh_url, id: 'clip-ssh-url', class: 'form-control select-onclick'
+            span.input-group-btn
+              = button_tag fa_icon('clipboard'), class: 'btn btn-default btn-clip', data: { 'clipboard-target': '#clip-ssh-url' }
+    .sidenav-container.top-related-gems
       h3 Top related gems
-      ul
-        - @gem_chart.each do |gem_object|
-          li
-            - if gem_object == @gem_object
-              = gem_object.name
-              =< fa_icon('circle')
-            - else
-              = link_to gem_object.name, gem_object_path(gem_object)
-              - if gem_object.downloads > @gem_object.downloads
-                =< fa_icon('chevron-up')
-              - else
-                =< fa_icon('chevron-down')
+      - @gem_chart.each do |gem_object|
+        - if gem_object == @gem_object
+          p.current
+            => fa_icon('download')
+            => number_to_human_with_delimiter(gem_object.downloads)
+            = gem_object.name
+        - else
+          p class="#{gem_object.downloads > @gem_object.downloads ? 'higher' : 'lower'}"
+            => fa_icon('download')
+            = gem_object.downloads > @gem_object.downloads ? '+' : ''
+            => number_to_human_with_delimiter(gem_object.downloads - @gem_object.downloads)
+            = link_to gem_object.name, gem_object_path(gem_object)
 
     - if user_signed_in?
       .sidenav-container
@@ -32,3 +77,17 @@
           = f.collection_select :proposed_value, GemCategory.children, :id, :name, prompt: true
           = f.hidden_field :proposed_attribute, value: 'category_id'
           = f.submit 'Submit'
+    .sidenav-container.versions-list
+      h3 Versions
+      - @gem_object.versions.each do |gem_version|
+        p.version-number 
+          = gem_version.number
+          =< "(current)" if gem_version.number == @gem_object.version
+        p.downloads-and-date
+          => fa_icon('download')
+          = number_to_human_with_delimiter(gem_version.downloads_count)
+          span.pull-right
+            => fa_icon('calendar')
+            = l gem_version.built_at.to_date
+        p.summary = gem_version.summary
+        hr

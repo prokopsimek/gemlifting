@@ -1,12 +1,37 @@
 #gem-object-top.col-md-12
-  h1= @gem_object.name
-  p= @gem_object.description
+  div
+    p= render_breadcrumbs_for(@gem_object)
+  .col-md-12.content-wrapper
+    .col-md-12.row
+      h1= @gem_object.name
+      p= @gem_object.description
+    .pull-right.gem-count-wrapper
+      .gem-count.gem-count-stars
+        => fa_icon('star')
+        = number_to_human_with_delimiter(@gem_object.stargazers_count) || 'N/A'
+      .gem-count
+        => fa_icon('eye')
+        = number_to_human_with_delimiter(@gem_object.watchers_count) || 'N/A'
+      .gem-count
+        => fa_icon('bug')
+        = number_to_human_with_delimiter(@gem_object.open_issues_count) || 'N/A'
+      .gem-count
+        => fa_icon('code-fork')
+        = number_to_human_with_delimiter(@gem_object.forks_count) || 'N/A'
 
 .col-md-8.content-left
-  #gem-object-info
-    h1= @gem_object.description
+  / #gem-object-info.content-wrapper
+  /   p
+  /     'Info:
+  /     = @gem_object.info
+  /   p
+  /     'Authors:
+  /     = @gem_object.authors
+  /   p
+  /     'Licenses:
+  /     = @gem_object.licenses.join(', ') if @gem_object.licenses
 
-  #gem-object-description
+  #gem-object-readme.content-wrapper
     = @gem_object.html_readme
 
 = render 'gem_objects/sidenav'

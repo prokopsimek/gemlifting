@@ -4,15 +4,20 @@ class GemObject < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   belongs_to :gem_category, inverse_of: :gem_objects
-  has_many :versions, class_name: GemVersion
+  has_many :versions, -> { order(number: :desc) }, class_name: GemVersion, dependent: :destroy
 
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
-  validate :cannot_be_in_parental_category
 
-  pg_search_scope :search_full_text, against: {
+  pg_search_scope :search_any_word, against: {
     name: 'A',
-    description: 'B'
+    description: 'B',
+    info: 'C'
+  },
+  using: {
+    tsearch: {
+      any_word: true
+    }
   }
 
   scope :without_category, -> { where(gem_category_id: nil) }
@@ -20,7 +25,8 @@ class GemObject < ApplicationRecord
   alias gem_versions versions
 
   def self.search(query)
-    search_full_text(query)
+    search_any_word(query)
+      .with_pg_search_highlight
   end
 
   def top_related_gems
@@ -42,7 +48,10 @@ class GemObject < ApplicationRecord
   def html_readme
     return nil if readme.nil?
 
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(link_attributes: { target: '_blank' }), autolink: true)
+    markdown = Redcarpet::Markdown.new(::HTML.new(link_attributes: { target: '_blank' }),
+                                       autolink: true,
+                                       fenced_code_blocks: true,
+                                       lax_spacing: true)
     markdown.render(read_readme).html_safe
   end
 
@@ -54,12 +63,6 @@ class GemObject < ApplicationRecord
   end
 
   private
-
-  def cannot_be_in_parental_category
-    if gem_category.present? && gem_category.is_parental?
-      errors.add(:base, 'Cannot add gem into parental category')
-    end
-  end
 
   def slug_candidates
     parameterized_name = name.present? ? name.parameterize.dasherize : name
