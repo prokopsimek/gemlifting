@@ -158,3 +158,5 @@ gem 'rouge'
 gem 'rack-timeout'
 
 gem 'rake'
+
+gem 'acts-as-taggable-on', '~> 4.0'

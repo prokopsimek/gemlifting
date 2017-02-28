@@ -4,13 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:github]
 
+  acts_as_tagger
+
   has_many :user_proposals
   has_many :proposals, through: :user_proposals
 
   def is_superadmin?
     role == 'superadmin'
   end
-  
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
