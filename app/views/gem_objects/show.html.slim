@@ -4,6 +4,7 @@
   .col-md-12.content-wrapper
     .col-md-12.row
       h1= @gem_object.name
+      = render 'gem_objects/tag_list', tags: @gem_object.tag_list
       p= @gem_object.description
     .pull-right.gem-count-wrapper
       .gem-count.gem-count-stars

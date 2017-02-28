@@ -34,8 +34,9 @@ namespace :sampledata do
                  .reject { |kwd| t = ActiveSupport::Inflector.transliterate(kwd.to_s); t !~ /^([[:alnum:]]|\-|\_)+$/ && kwd.to_s.downcase.singularize.dasherize.in?(blacklist.words) }
                  .first(5)
                  .collect { |t| t.to_s.singularize.dasherize }
-      ap resolved_kwds.join(', ').to_s
-      # TODO: gem_object.tags << resolved_kwds
+      joined_tags = resolved_kwds.join(', ').to_s
+      ap joined_tags
+      gem_object.tag_list.add(joined_tags, parse: true)
     end
   end
 end
