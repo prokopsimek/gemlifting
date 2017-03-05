@@ -25,6 +25,8 @@ namespace :sampledata do
     raise 'no, you cannot' if Environment.current?('production')
 
     GemObject.where.not(description: nil).find_each do |gem_object|
+      next if gem_object.tag_list.any?
+
       blacklist = Highscore::Blacklist.load %w(create app etc way from the and that add not see about using some something under our run you want for will are with end new this use all but can your just get very data out first they second ruby rails gem gems in find)
       text = Highscore::Content.new gem_object.description, blacklist
       text.configure { set :ignore_case, true; }
@@ -35,8 +37,10 @@ namespace :sampledata do
                  .first(5)
                  .collect { |t| t.to_s.singularize.dasherize }
       joined_tags = resolved_kwds.join(', ').to_s
-      ap joined_tags
+      
+      ap "#{gem_object.name} => #{joined_tags}"
       gem_object.tag_list.add(joined_tags, parse: true)
+      gem_object.save
     end
   end
 end
