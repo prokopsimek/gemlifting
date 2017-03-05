@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     # pretty url for search
     redirect_to search_path(q: query) if params[:utf8]
 
-    @gem_objects = GemObject.search(query)
+    @gem_objects = GemObject.search(query).page(params[:page])
 
     @page_title = "Search \"#{query}\""
     @page_description = "Search results for text \"#{query}\""
