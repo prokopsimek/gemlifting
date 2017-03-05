@@ -20,6 +20,29 @@ namespace :sampledata do
       end
     end
   end
+
+  task parse_keywords: :environment do
+    raise 'no, you cannot' if Environment.current?('production')
+
+    GemObject.where.not(description: nil).find_each do |gem_object|
+      next if gem_object.tag_list.any?
+
+      blacklist = Highscore::Blacklist.load %w(create app etc way from the and that add not see about using some something under our run you want for will are with end new this use all but can your just get very data out first they second ruby rails gem gems in find)
+      text = Highscore::Content.new gem_object.description, blacklist
+      text.configure { set :ignore_case, true; }
+      resolved_kwds = text
+                 .keywords
+                 .top(50)
+                 .reject { |kwd| t = ActiveSupport::Inflector.transliterate(kwd.to_s); t !~ /^([[:alnum:]]|\-|\_)+$/ && kwd.to_s.downcase.singularize.dasherize.in?(blacklist.words) }
+                 .first(5)
+                 .collect { |t| t.to_s.singularize.dasherize }
+      joined_tags = resolved_kwds.join(', ').to_s
+      
+      ap "#{gem_object.name} => #{joined_tags}"
+      gem_object.tag_list.add(joined_tags, parse: true)
+      gem_object.save
+    end
+  end
 end
 
 def categories_hash

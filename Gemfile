@@ -145,6 +145,9 @@ gem 'influxdb'
 # search
 gem 'pg_search'
 
+# keywords
+gem 'highscore'
+
 # copy to clipboard
 gem 'clipboard-rails'
 
@@ -157,3 +160,5 @@ gem 'kaminari'
 gem 'rack-timeout'
 
 gem 'rake'
+
+gem 'acts-as-taggable-on', '~> 4.0'

@@ -53,6 +53,27 @@
 
 }
 
+.tag-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .tag {
+    background: @brand-primary;
+    color: #fff;
+    padding: 2.5px 7px 2.5px 6px;
+    margin: 5px 10px;
+    border-radius: 4px;
+    position: relative;
+    &:before{
+      content:"\A";
+      border-style: solid;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent @brand-primary transparent transparent;
+      position: absolute;
+      left: -9px;
+    }
+  }
+}
+
 .navbar {
   pointer-events: none;
 

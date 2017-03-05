@@ -3,6 +3,8 @@ class GemObject < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
+  acts_as_ordered_taggable
+
   belongs_to :gem_category, inverse_of: :gem_objects
   has_many :versions, -> { order(number: :desc) }, class_name: GemVersion, dependent: :destroy
 
