@@ -2,6 +2,8 @@
   #category-detail.gem-objects-list
     - if gem_objects.any?
       = render partial: 'gem_categories/gem_object', collection: gem_objects
+
+      = paginate gem_objects
     - else
       h4 No gems in this category.
 

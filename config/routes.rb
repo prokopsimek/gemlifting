@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   require 'sidekiq-scheduler/web'
+
   mount Sidekiq::Web => '/sidekiq'
   mount RailsAdmin::Engine => '/superadmin', as: 'rails_admin'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :users, skip: [:sessions], controllers: { omniauth_callbacks: 'callbacks' }
   as :user do
