@@ -157,3 +157,9 @@ gem 'kaminari'
 gem 'rack-timeout'
 
 gem 'rake'
+
+# searching with Elasticsearch
+gem 'elasticsearch'
+gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: '5.x'
+gem 'elasticsearch-persistence', github: 'elastic/elasticsearch-rails', branch: '5.x'
+gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: '5.x'

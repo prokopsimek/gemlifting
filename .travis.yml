@@ -3,10 +3,12 @@ cache: bundler
 
 sevices:
   - postgresql
+  - elasticsearch
 
 before_install:
   - createdb gemlifting_test
   - cp config/database.travis.yml config/database.yml
+  - sudo service elasticsearch start
 
 rvm:
   - 2.3.1

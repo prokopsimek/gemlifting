@@ -1,0 +1,1 @@
+Elasticsearch::Model.client = Elasticsearch::Client.new(host: ENV['ELASTICSEARCH_HOST'], log: Rails.env.production?, trace: Rails.env.production?)

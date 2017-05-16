@@ -84,14 +84,18 @@ RSpec.describe GemObject, type: :model do
 
   describe '#search' do
     it 'should search gems correctly with search weights' do
+      GemObject.__elasticsearch__.create_index! force: true
+
       gem = create(:gem_object, name: 'Any name', description: 'Any description with text asdfghjkl.')
       gem2 = create(:gem_object, name: 'asdfghjkl', description: 'Any description.')
 
+      GemObject.__elasticsearch__.refresh_index!
       search_results = GemObject.search('asdfghjkl')
 
-      expect(search_results.size).to eq 2
-      expect(search_results.first).to eq gem2
-      expect(search_results.second).to eq gem
+      records = search_results.records.records
+      expect(search_results.results.total).to eq 2
+      expect(records.first).to eq gem
+      expect(records.second).to eq gem2
     end
   end
 

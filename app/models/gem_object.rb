@@ -1,5 +1,5 @@
 class GemObject < ApplicationRecord
-  include PgSearch, Proposable
+  include Proposable, Searchable
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -9,25 +9,9 @@ class GemObject < ApplicationRecord
   validates :slug, uniqueness: true
   validates :name, presence: true, uniqueness: true
 
-  pg_search_scope :search_any_word, against: {
-    name: 'A',
-    description: 'B',
-    info: 'C'
-  },
-  using: {
-    tsearch: {
-      any_word: true
-    }
-  }
-
   scope :without_category, -> { where(gem_category_id: nil) }
 
   alias gem_versions versions
-
-  def self.search(query)
-    search_any_word(query)
-      .with_pg_search_highlight
-  end
 
   def top_related_gems
     GemObject
